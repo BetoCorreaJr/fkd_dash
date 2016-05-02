@@ -129,160 +129,36 @@
 				<div class="card-content" >
 					<div class="row">
 						<div class="col s12">
-							<div class="col s12 m2">
-								<div class="card amber darken-2">
-									<div class="card-content white-text">
-										<h5>Número de Promoções Cadastradas</h5>
-										<h3>2</h3>
-									</div>
+							<form action="" method="POST">
+								<legend>Entre em contato com a Fika a Dica!</legend>
+								<div class="input-field">
+									<label class="control-label" for="nome">Seu Nome</label>
+									<input type="text" class="form-control validate" id="nome">
 								</div>
-							</div>
-							<div class="col s12 m2">
-								<div class="card red">
-									<div class="card-content white-text">
-										<h5>Funcionários Cadastrados</h5>
-										<h3>2</h3>
-									</div>
+								<div class="input-field">
+									<label class="control-label" for="e-mail">Seu E-mail</label>
+									<input type="text" class="form-control validate" id="e-mail">
 								</div>
-							</div>
-							<div class="col s12 m8">
-								<div class="card cyan darken-2">
-									<div class="card-content white-text">
-										<div class="row">
-											<div class="col s12 m4">
-												<h5>Vendas realizadas</h5>
-												<p style="display: inline-block;">Últimos 3 dias</p>
-												<h3>7</h3>
-											</div>
-											<div class="col s12 m8">
-												TESTE
-											</div>
-										</div>
-									</div>
+								<div class="input-field">
+									<label class="control-label" for="cnpj">Seu CNPJ</label>
+									<input type="text" class="form-control validate" id="cnpj">
 								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col s12">
-							<div class="divider"></div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col s12 m3">
-							<div class="card">
-								<div class="card-content">
-									<p><i class="material-icons left">date_range</i> Selecione a Data Inicial</p>
-									<p><input type="date" class="datepicker" placeholder="Clique para selecionar uma data inicial"></p>
+								<div class="input-field col s12">
+									<select>
+										<option value="" disabled selected>Você deseja falar com...</option>
+										<option value="1">Equipe de Suporte</option>
+										<option value="2">Equipe Comercial</option>
+										<option value="3">Equipe de Marketing</option>
+									</select>
+									<label>Selecione o assunto</label>
 								</div>
-							</div>
-						</div>
-						<div class="col s12 m3">
-							<div class="card">
-								<div class="card-content">
-									<p><i class="material-icons left">date_range</i> Selecione a Data Final</p>
-									<p><input type="date" class="datepicker" placeholder="Clique para selecionar uma data final"></p>
+								<div class="input-field col s12">
+									<textarea id="textarea1" class="materialize-textarea"></textarea>
+									<label for="textarea1">Escreva sua mensagem aqui...</label>
 								</div>
-							</div>
-						</div>
-						<div class="col s12 m3">
-							<div class="card" style="height: 125px;">
-								<div class="card-content">
-									<p><i class="material-icons left">attach_money</i>Selecione uma promoção:</p>
-									<form action="">
-										<div class="input-field col s12">
-											<select>
-												<option value="1" selected>Todas</option>
-												<option value="2">Promoção 1</option>
-												<option value="3">Promoção 2</option>
-												<option value="4">Promoção 3</option>
-											</select>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col s12">
-							<table class="striped">
-								<thead>
-									<tr>
-										<th data-field="cliente"><a href="#!">Cliente</a></th>
-										<th data-field="promocao"><a href="#!">Promoção</a></th>
-										<th data-field="funcionario"><a href="#!">Funcionário</a></th>
-										<th data-field="data"><a href="#!">Data</a></th>
-										<th data-field="hora"><a href="#!">Hora</a></th>
-										<th data-field="v-total"><a href="#!">Venda Total</a></th>
-										<th data-field="d-total"><a href="#!">Total com Desconto</a></th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Alvin</td>
-										<td>Promoção 01</td>
-										<td>Pedro Almeida</td>
-										<td>20/08/2016</td>
-										<td>12:25</td>
-										<td>R$ 100,00</td>
-										<td>R$ 70,00</td>
-									</tr>
-									<tr>
-										<td>Alan</td>
-										<td>Promoção 01</td>
-										<td>Pedro Almeida</td>
-										<td>20/08/2016</td>
-										<td>12:25</td>
-										<td>R$ 100,00</td>
-										<td>R$ 70,00</td>
-									</tr>
-									<tr>
-										<td>Jonathan</td>
-										<td>Promoção 01</td>
-										<td>Pedro Almeida</td>
-										<td>20/08/2016</td>
-										<td>12:25</td>
-										<td>R$ 100,00</td>
-										<td>R$ 70,00</td>
-									</tr>
-									<tr>
-										<td>Jonathan</td>
-										<<td>Promoção 01</td>
-										<td>Pedro Almeida</td>
-										<td>20/08/2016</td>
-										<td>12:25</td>
-										<td>R$ 100,00</td>
-										<td>R$ 70,00</td>
-									</tr>
-									<tr>
-										<td>Jonathan</td>
-										<td>Promoção 01</td>
-										<td>Pedro Almeida</td>
-										<td>20/08/2016</td>
-										<td>12:25</td>
-										<td>R$ 100,00</td>
-										<td>R$ 70,00</td>
-									</tr>
-									<tr>
-										<td>Jonathan</td>
-										<td>Promoção 01</td>
-										<td>Pedro Almeida</td>
-										<td>20/08/2016</td>
-										<td>12:25</td>
-										<td>R$ 100,00</td>
-										<td>R$ 70,00</td>
-									</tr>
-									<tr>
-										<td>Jonathan</td>
-										<td>Promoção 01</td>
-										<td>Pedro Almeida</td>
-										<td>20/08/2016</td>
-										<td>12:25</td>
-										<td>R$ 100,00</td>
-										<td>R$ 70,00</td>
-									</tr>
-								</tbody>
-							</table>
+								
+								<button type="submit" class="btn yellow darken-2 black-text"><i class="material-icons left">send</i> ENVIAR MENSAGEM</button>
+							</form>
 						</div>
 					</div>
 				</div>
