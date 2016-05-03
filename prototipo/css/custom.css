@@ -60,6 +60,11 @@ ul.side-nav.leftside-navigation {
     margin: 10px 0 12px;
 }
 
+#profile-card .card-reveal p {
+    font-size: 1.0rem;
+    margin: 10px 0 12px;
+}
+
 ul.side-nav.leftside-navigation li.user-details {
     background: url("../images/user-bg.jpg") no-repeat center center;
     -webkit-background-size: cover;
