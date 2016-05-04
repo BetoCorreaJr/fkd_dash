@@ -1,0 +1,25 @@
+/* Fonts */
+
+@font-face {
+    font-family: 'Arapey-Regular';
+    src: url('../fonts/Arapey-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Arapey-Italic';
+    src: url('../fonts/Arapey-Italic.ttf') format('truetype');
+}
+
+/* Logo */
+
+.fkd-font-title {
+    font-family: 'Arapey-Italic';
+    font-size: 24px!important;
+    font-weight: 500!important;
+    /*padding-bottom: 3px;*/
+}
+
+/* Text/Item Color */
+
+.item-black {
+    color: black;
+}
