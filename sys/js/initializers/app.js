@@ -9,6 +9,13 @@ fkd.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     $stateProvider
         .state('index', {
             url: "/",
-            templateUrl: "templates/index.html"
+            views: {
+                "menu": {
+                    templateUrl: "templates/menu/acesso-menu.html"
+                },
+                "view": {
+                    templateUrl: "templates/acesso.html"
+                }
+            }
         });
 }]);
