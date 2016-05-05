@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" ng-app="fkdDash">
     <head>
         <meta charset="utf-8">
         <title>Fika a Dica! - Acesso</title>
@@ -21,7 +21,7 @@
         <!-- AngularJS || Carregando aqui para utilizar ngCloak -->
         <script src="bower_components/angular/angular.js"></script>
     </head>
-    <body ng-app="fkdDash">
+    <body ng-controller="MainController">
         <header class="page-topbar">
             <nav class="yellow darken-2">
                 <div class="navbar-fixed">
@@ -32,7 +32,7 @@
                 </div>
             </nav>
         </header>
-        <div></div>
+        <div ui-view></div>
         <!-- JQuery -->
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <!-- Materialize JS -->
@@ -48,5 +48,6 @@
         <!-- Filters -->
         <!-- <script src="js/filters/unsafe.js"></script> -->
         <!-- Controllers -->
+				<script src="js/controllers/MainController.js"></script>
     </body>
 </html>
