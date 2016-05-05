@@ -18,31 +18,37 @@
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+        <!-- JQuery -->
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <!-- Materialize JS -->
+        <script src="bower_components/Materialize/dist/js/materialize.min.js"></script>
         <!-- AngularJS || Carregando aqui para utilizar ngCloak -->
         <script src="bower_components/angular/angular.js"></script>
     </head>
     <body ng-controller="MainController" ng-cloak>
-        <header class="page-topbar">
+        <header class="page-topbar navbar-fixed">
             <nav class="yellow darken-2">
                 <div class="navbar-fixed">
                     <a href="#!" class="brand-logo fkd-font-title" style="padding-left: 10px;">
-                        <span class="item-black">Fika a Dica</span>
+                        <span class="black-text">Fika a Dica</span>
                         <span class="fkd-detail">!</span>
                     </a>
                 </div>
             </nav>
         </header>
-        <div ui-view="menu"></div>
-        <div ui-view="view"></div>
-        <!-- JQuery -->
-        <script src="bower_components/jquery/dist/jquery.min.js"></script>
-        <!-- Materialize JS -->
-        <script src="bower_components/Materialize/dist/js/materialize.min.js"></script>
+        <div id="main">
+    			<div class="wrapper">
+            <div ui-view="menu"></div>
+            <div ui-view="view"></div>
+          </div>
+        </div>
         <!-- SweetAlert -->
         <script src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
         <!-- AngularJS -->
         <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
         <script src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
+        <!-- Materialize JS -->
+        <script src="bower_components/angular-materialize/src/angular-materialize.js"></script>
         <!-- Initializations -->
         <script src="js/initializers/app.js"></script>
         <script src="js/initializers/init.js"></script>
@@ -50,5 +56,6 @@
         <!-- <script src="js/filters/unsafe.js"></script> -->
         <!-- Controllers -->
 				<script src="js/controllers/MainController.js"></script>
+        <script src="js/controllers/MenuController.js"></script>
     </body>
 </html>

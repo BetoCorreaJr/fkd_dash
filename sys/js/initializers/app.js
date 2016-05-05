@@ -1,4 +1,4 @@
-var fkd = angular.module('fkdDash', ['ui.router', 'angular.filter']);
+var fkd = angular.module('fkdDash', ['ui.materialize', 'ui.router', 'angular.filter']);
 
 fkd.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
     // UI-Router //
@@ -7,14 +7,47 @@ fkd.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     //
     // Now set up the states
     $stateProvider
-        .state('index', {
+        .state('acesso-home', {
             url: "/",
             views: {
                 "menu": {
                     templateUrl: "templates/menu/acesso-menu.html"
                 },
                 "view": {
-                    templateUrl: "templates/acesso.html"
+                    templateUrl: "templates/acesso/acesso.html"
+                }
+            }
+        })
+        .state('acesso-administrativo', {
+            url: "/acesso-administrativo",
+            views: {
+                "menu": {
+                    templateUrl: "templates/menu/acesso-menu.html"
+                },
+                "view": {
+                    templateUrl: "templates/acesso/acesso-administrativo.html"
+                }
+            }
+        })
+        .state('acesso-estabelecimento', {
+            url: "/acesso-estabelecimento",
+            views: {
+                "menu": {
+                    templateUrl: "templates/menu/acesso-menu.html"
+                },
+                "view": {
+                    templateUrl: "templates/acesso/acesso-estabelecimento.html"
+                }
+            }
+        })
+        .state('acesso-empresa', {
+            url: "/acesso-empresa",
+            views: {
+                "menu": {
+                    templateUrl: "templates/menu/acesso-menu.html"
+                },
+                "view": {
+                    templateUrl: "templates/acesso/acesso-empresa.html"
                 }
             }
         });
