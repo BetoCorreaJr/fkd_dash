@@ -57,5 +57,17 @@ fkd.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
                     controller: "LoginController"
                 }
             }
+        })
+        .state('administrativo-home', {
+            url: "/administrativo",
+            views: {
+                "menu": {
+                    templateUrl: "templates/menu/administrativo-menu.html",
+                    controller: "MenuController"
+                },
+                "view": {
+                    templateUrl: "templates/administrativo/administrativo.html",
+                }
+            }
         });
 }]);

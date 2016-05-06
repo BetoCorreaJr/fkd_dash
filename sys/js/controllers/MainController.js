@@ -28,7 +28,7 @@ fkd.controller('MainController', ['$scope', '$sce', '$http', function($scope, $s
             console.log("Usuário já logado");
             if ($scope.usuario.tipo == "Administrativo") {
                 console.log("Tipo: Administrativo");
-                window.location.href = "#/acesso-administrativo";
+                window.location.href = "#/administrativo";
             }
         }
     };

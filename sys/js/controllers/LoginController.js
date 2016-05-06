@@ -34,7 +34,7 @@ fkd.controller('LoginController', ['$scope', '$sce', '$http', function($scope, $
             $scope.loginData = {};
             $scope.form.user.$dirty = false;
             $scope.form.pwd.$dirty = false;
-            // Trocar tela //
+            window.location.href = "#/administrativo";
         }).error(function(data) {
             console.log(data);
             swal({
