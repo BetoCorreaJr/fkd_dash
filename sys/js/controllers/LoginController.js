@@ -29,7 +29,7 @@ fkd.controller('LoginController', ['$scope', '$sce', '$http', function($scope, $
         }).success(function(data) {
             console.log(data);
             localStorage.setItem('usuario', $scope.usuario.usuario = $scope.loginData.usuario);
-            localStorage.setItem('tipo', $scope.usuario.tipo = 'Adminstrativo');
+            localStorage.setItem('tipo', $scope.usuario.tipo = 'Administrativo');
             localStorage.setItem('login', $scope.usuario.login = true);
             $scope.loginData = {};
             $scope.form.user.$dirty = false;
@@ -37,6 +37,13 @@ fkd.controller('LoginController', ['$scope', '$sce', '$http', function($scope, $
             // Trocar tela //
         }).error(function(data) {
             console.log(data);
+            swal({
+                title: data,
+                text: 'Seu usuário ou senha estão errados.',
+                timer: 3000,
+                type: "error",
+                showConfirmButton: false
+            });
         });
     };
 }]);

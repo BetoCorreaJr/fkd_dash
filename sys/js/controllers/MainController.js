@@ -14,8 +14,22 @@ fkd.controller('MainController', ['$scope', '$sce', '$http', function($scope, $s
 
     $scope.onLoad = function() {
         console.log('onLoad');
+        setTimeout(function() {
+            $scope.ifLogin();
+        }, 0);
         if ($scope.view.menuState == "acesso-menu") {
             $scope.acessoState();
+        }
+    };
+
+    $scope.ifLogin = function() {
+        console.log('ifLogin');
+        if ($scope.usuario.login) {
+            console.log("Usuário já logado");
+            if ($scope.usuario.tipo == "Administrativo") {
+                console.log("Tipo: Administrativo");
+                window.location.href = "#/acesso-administrativo";
+            }
         }
     };
 
