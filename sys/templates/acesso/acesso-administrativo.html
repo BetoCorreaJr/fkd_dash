@@ -9,22 +9,30 @@
               <br>
               <h5 class="center">Acesso Administrativo</h5>
               <br>
-              <form class="container">
+              <form class="container" name="form" ng-submit="doLogin()">
                 <div class="row">
                   <div class="input-field col s12">
-                    <input id="usuario" type="text">
-                    <label for="usuario">Usuario</label>
+                    <input ng-class="{false:'', true:'invalid'}[form.user.$dirty && form.user.$invalid]" id="user" type="text" name="user" ng-model="loginData.usuario" required>
+                    <label for="user">Usuario</label>
+                  </div>
+                  <div ng-show="form.user.$dirty && form.user.$invalid">
+                    <div class="red-text" style="text-align: center" ng-show="form.user.$error.required">Você precisa inserir seu usuário.</div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s12">
-                    <input id="senha" type="password" class="validate">
+                    <input ng-class="{false:'', true:'invalid'}[form.pwd.$dirty && form.pwd.$invalid]" id="pwd" type="password" name="pwd" ng-model="loginData.pwd" required>
                     <label for="senha">Senha</label>
+                  </div>
+                  <div ng-show="form.pwd.$dirty && form.pwd.$invalid">
+                    <div class="red-text" style="text-align: center" ng-show="form.pwd.$error.required">Você precisa inserir sua senha.</div>
                   </div>
                 </div>
                 <br>
                 <div class="row center">
-                  <a class="waves-effect waves-light btn yellow darken-2" ng-click="doLogin()"><i class="material-icons right">done</i>Entrar</a>
+                  <button class="waves-effect waves-light btn yellow darken-2">
+                    <i class="material-icons right">done</i>Entrar
+                  </button>
                 </div>
               </form>
               <br>

@@ -11,7 +11,8 @@ fkd.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
             url: "/",
             views: {
                 "menu": {
-                    templateUrl: "templates/menu/acesso-menu.html"
+                    templateUrl: "templates/menu/acesso-menu.html",
+                    controller: "MenuController"
                 },
                 "view": {
                     templateUrl: "templates/acesso/acesso.html"
@@ -22,10 +23,12 @@ fkd.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
             url: "/acesso-administrativo",
             views: {
                 "menu": {
-                    templateUrl: "templates/menu/acesso-menu.html"
+                    templateUrl: "templates/menu/acesso-menu.html",
+                    controller: "MenuController"
                 },
                 "view": {
-                    templateUrl: "templates/acesso/acesso-administrativo.html"
+                    templateUrl: "templates/acesso/acesso-administrativo.html",
+                    controller: "LoginController"
                 }
             }
         })
@@ -33,10 +36,12 @@ fkd.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
             url: "/acesso-estabelecimento",
             views: {
                 "menu": {
-                    templateUrl: "templates/menu/acesso-menu.html"
+                    templateUrl: "templates/menu/acesso-menu.html",
+                    controller: "MenuController"
                 },
                 "view": {
-                    templateUrl: "templates/acesso/acesso-estabelecimento.html"
+                    templateUrl: "templates/acesso/acesso-estabelecimento.html",
+                    controller: "LoginController"
                 }
             }
         })
@@ -44,10 +49,12 @@ fkd.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
             url: "/acesso-empresa",
             views: {
                 "menu": {
-                    templateUrl: "templates/menu/acesso-menu.html"
+                    templateUrl: "templates/menu/acesso-menu.html",
+                    controller: "MenuController"
                 },
                 "view": {
-                    templateUrl: "templates/acesso/acesso-empresa.html"
+                    templateUrl: "templates/acesso/acesso-empresa.html",
+                    controller: "LoginController"
                 }
             }
         });

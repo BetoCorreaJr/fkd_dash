@@ -1,4 +1,9 @@
 fkd.controller('MainController', ['$scope', '$sce', '$http', function($scope, $sce, $http) {
+    $scope.usuario = {
+        login: JSON.parse(localStorage.getItem('login')),
+        tipo: localStorage.getItem('tipo'),
+        usuario: localStorage.getItem('usuario')
+    };
 
     $scope.view = {};
     $scope.setState = function(menuState, viewState) {

@@ -17,3 +17,9 @@
     font-weight: 500!important;
     /*padding-bottom: 3px;*/
 }
+
+/* Input */
+
+.input-error {
+    border-bottom-color: red!important;
+}
