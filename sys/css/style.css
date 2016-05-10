@@ -23,3 +23,9 @@
 .input-error {
     border-bottom-color: red!important;
 }
+
+/* NavBar */
+
+.nav-ztop {
+    z-index: 100000000000000000000!important;
+}

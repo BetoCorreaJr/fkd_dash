@@ -26,15 +26,15 @@
         <script src="bower_components/angular/angular.js"></script>
     </head>
     <body ng-controller="MainController" ng-cloak>
-        <header class="page-topbar navbar-fixed">
+        <header class="page-topbar navbar-fixed nav-ztop">
             <nav class="yellow darken-2">
                 <div class="navbar-fixed">
                     <a href="#!" class="brand-logo fkd-font-title" style="padding-left: 10px;">
                         <span class="black-text">Fika a Dica</span>
                         <span class="fkd-detail">!</span>
                     </a>
-                    <ul class="right">
-          						<li><a class="black-text"><i class="material-icons">exit_to_app</i></a></li>
+                    <ul class="right" ng-show="usuario.login">
+          						<li><a class="black-text" ng-click="doLogout()">Sair<i class="material-icons right" style="padding-top:4px;">exit_to_app</i></a></li>
           					</ul>
                 </div>
             </nav>

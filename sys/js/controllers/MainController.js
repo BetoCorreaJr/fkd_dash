@@ -19,6 +19,8 @@ fkd.controller('MainController', ['$scope', '$sce', '$http', function($scope, $s
         }, 0);
         if ($scope.view.menuState == "acesso-menu") {
             $scope.acessoState();
+        } else if ($scope.view.menuState == "administrativo-menu") {
+            $scope.administrativoState();
         }
     };
 
@@ -31,6 +33,19 @@ fkd.controller('MainController', ['$scope', '$sce', '$http', function($scope, $s
                 window.location.href = "#/administrativo";
             }
         }
+    };
+
+    $scope.doLogout = function() {
+        console.log('doLogout');
+        $scope.usuario = {
+            login: false,
+            tipo: null,
+            usuario: null
+        };
+        localStorage.setItem('login', $scope.usuario.login);
+        localStorage.setItem('tipo', $scope.usuario.tipo);
+        localStorage.setItem('usuario', $scope.usuario.usuario);
+        window.location.href = "#/";
     };
 
     $scope.acessoState = function() {
@@ -56,5 +71,9 @@ fkd.controller('MainController', ['$scope', '$sce', '$http', function($scope, $s
             $("#estabelecimento").removeClass("active");
             $("#empresa").addClass("active");
         }
+    };
+
+    $scope.administrativoState = function() {
+        console.log('adminstrativoState');
     };
 }]);
