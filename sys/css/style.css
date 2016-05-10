@@ -27,5 +27,5 @@
 /* NavBar */
 
 .nav-ztop {
-    z-index: 100000000000000000000!important;
+    z-index: 1000!important;
 }
