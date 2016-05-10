@@ -5,6 +5,7 @@ fkd.controller('MainController', ['$scope', '$sce', '$http', function($scope, $s
         usuario: localStorage.getItem('usuario')
     };
 
+    // Mantém atualizado em que view o app se encontra
     $scope.view = {};
     $scope.setState = function(menuState, viewState) {
         console.log('setState');
@@ -12,11 +13,14 @@ fkd.controller('MainController', ['$scope', '$sce', '$http', function($scope, $s
         $scope.view.viewState = viewState;
     };
 
+    // Roda em toda página pra checar o que deve ser exibido/alterado
     $scope.onLoad = function() {
         console.log('onLoad');
-        setTimeout(function() {
-            $scope.ifLogin();
-        }, 0);
+        if ($scope.view.menuState == "acesso-menu") {
+            setTimeout(function() {
+                $scope.ifLogin();
+            }, 0);
+        }
         if ($scope.view.menuState == "acesso-menu") {
             $scope.acessoState();
         } else if ($scope.view.menuState == "administrativo-menu") {
@@ -24,6 +28,7 @@ fkd.controller('MainController', ['$scope', '$sce', '$http', function($scope, $s
         }
     };
 
+    // Determina se usuário está logado e redireciona ele pra página certa
     $scope.ifLogin = function() {
         console.log('ifLogin');
         if ($scope.usuario.login) {
@@ -35,6 +40,7 @@ fkd.controller('MainController', ['$scope', '$sce', '$http', function($scope, $s
         }
     };
 
+    // Faz logoff
     $scope.doLogout = function() {
         console.log('doLogout');
         $scope.usuario = {
@@ -48,32 +54,50 @@ fkd.controller('MainController', ['$scope', '$sce', '$http', function($scope, $s
         window.location.href = "#/";
     };
 
+    // Determina item ativo no menu Acesso
     $scope.acessoState = function() {
         console.log('acessoState');
         if ($scope.view.viewState == "acesso-home") {
             console.log('acesso-home');
-            $("#administrativo").removeClass("active");
-            $("#estabelecimento").removeClass("active");
-            $("#empresa").removeClass("active");
         } else if ($scope.view.viewState == "acesso-administrativo") {
             console.log('acesso-administrativo');
             $("#administrativo").addClass("active");
-            $("#estabelecimento").removeClass("active");
-            $("#empresa").removeClass("active");
         } else if ($scope.view.viewState == "acesso-estabelecimento") {
             console.log('acesso-estabelecimento');
-            $("#administrativo").removeClass("active");
             $("#estabelecimento").addClass("active");
-            $("#empresa").removeClass("active");
         } else if ($scope.view.viewState == "acesso-empresa") {
             console.log('acesso-empresa');
-            $("#administrativo").removeClass("active");
-            $("#estabelecimento").removeClass("active");
             $("#empresa").addClass("active");
         }
     };
 
+    // Determina item ativo no menu Administrativo
     $scope.administrativoState = function() {
         console.log('adminstrativoState');
+        if ($scope.view.viewState == "administrativo-adicionar-admin") {
+            console.log('administrativo-adicionar-admin');
+            $("#gerenciarAdmins").addClass("active");
+            $("#adicionar-admin").addClass("active active-collapsible");
+        } else if ($scope.view.viewState == "administrativo-editar-admin") {
+            console.log('administrativo-editar-admin');
+            $("#gerenciarAdmins").addClass("active");
+            $("#editar-admin").addClass("active active-collapsible");
+        } else if ($scope.view.viewState == "administrativo-adicionar-estabelecimento") {
+            console.log('administrativo-adicionar-estabelecimento');
+            $("#gerenciarEstabelecimentos").addClass("active");
+            $("#adicionar-estabelecimento").addClass("active active-collapsible");
+        } else if ($scope.view.viewState == "administrativo-editar-estabelecimento") {
+            console.log('administrativo-editar-estabelecimento');
+            $("#gerenciarEstabelecimentos").addClass("active");
+            $("#editar-estabelecimento").addClass("active active-collapsible");
+        } else if ($scope.view.viewState == "administrativo-adicionar-empresa") {
+            console.log('administrativo-adicionar-empresa');
+            $("#gerenciarEmpresas").addClass("active");
+            $("#adicionar-empresa").addClass("active active-collapsible");
+        } else if ($scope.view.viewState == "administrativo-editar-empresa") {
+            console.log('administrativo-editar-empresa');
+            $("#gerenciarEmpresas").addClass("active");
+            $("#editar-empresa").addClass("active active-collapsible");
+        }
     };
 }]);

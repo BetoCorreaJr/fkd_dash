@@ -69,5 +69,77 @@ fkd.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
                     templateUrl: "templates/administrativo/administrativo.html",
                 }
             }
+        })
+        .state('administrativo-adicionar-admin', {
+            url: "/administrativo/adicionar-admin",
+            views: {
+                "menu": {
+                    templateUrl: "templates/menu/administrativo-menu.html",
+                    controller: "MenuController"
+                },
+                "view": {
+                    templateUrl: "templates/administrativo/administrativo-adicionar-admin.html",
+                }
+            }
+        })
+        .state('administrativo-editar-admin', {
+            url: "/administrativo/editar-admin",
+            views: {
+                "menu": {
+                    templateUrl: "templates/menu/administrativo-menu.html",
+                    controller: "MenuController"
+                },
+                "view": {
+                    templateUrl: "templates/administrativo/administrativo-editar-admin.html",
+                }
+            }
+        })
+        .state('administrativo-adicionar-estabelecimento', {
+            url: "/administrativo/adicionar-estabelecimento",
+            views: {
+                "menu": {
+                    templateUrl: "templates/menu/administrativo-menu.html",
+                    controller: "MenuController"
+                },
+                "view": {
+                    templateUrl: "templates/administrativo/administrativo-adicionar-estabelecimento.html",
+                }
+            }
+        })
+        .state('administrativo-editar-estabelecimento', {
+            url: "/administrativo/editar-estabelecimento",
+            views: {
+                "menu": {
+                    templateUrl: "templates/menu/administrativo-menu.html",
+                    controller: "MenuController"
+                },
+                "view": {
+                    templateUrl: "templates/administrativo/administrativo-editar-estabelecimento.html",
+                }
+            }
+        })
+        .state('administrativo-adicionar-empresa', {
+            url: "/administrativo/adicionar-empresa",
+            views: {
+                "menu": {
+                    templateUrl: "templates/menu/administrativo-menu.html",
+                    controller: "MenuController"
+                },
+                "view": {
+                    templateUrl: "templates/administrativo/administrativo-adicionar-empresa.html",
+                }
+            }
+        })
+        .state('administrativo-editar-empresa', {
+            url: "/administrativo/editar-empresa",
+            views: {
+                "menu": {
+                    templateUrl: "templates/menu/administrativo-menu.html",
+                    controller: "MenuController"
+                },
+                "view": {
+                    templateUrl: "templates/administrativo/administrativo-editar-empresa.html",
+                }
+            }
         });
 }]);

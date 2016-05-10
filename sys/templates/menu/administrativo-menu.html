@@ -7,16 +7,32 @@
           <span><i class="material-icons left" style="padding-top:8px">person</i>{{usuario.usuario}}</span>
       </div>
     </li>
-    <li class="bold" id="Teste"><a class="waves-effect waves-cyan"><i class="material-icons left">person</i> Gerenciar Admins</a></li>
+    <!-- <li class="bold" id="Teste"><a class="waves-effect waves-cyan"><i class="material-icons left">person</i> Gerenciar Admins</a></li>
     <li class="bold" id="Teste"><a class="waves-effect waves-cyan"><i class="material-icons left">local_offer</i> Gerenciar Estabelecimentos</a></li>
-    <li class="bold" id="Teste"><a class="waves-effect waves-cyan"><i class="material-icons left">work</i> Gerenciar Empresas</a></li>
+    <li class="bold" id="Teste"><a class="waves-effect waves-cyan"><i class="material-icons left">work</i> Gerenciar Empresas</a></li> -->
     <li class="no-padding">
       <ul class="collapsible" data-collapsible="accordion" watch>
-        <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="material-icons left">attach_money</i> Gerenciar Promoções</a>
+        <li class="bold"><a id="gerenciarAdmins" class="collapsible-header waves-effect waves-cyan"><i class="material-icons left">person</i>Admins</a>
           <div class="collapsible-body" style="">
             <ul>
-              <li><a href="cadastrar-promocao.html"><i class="material-icons left">add_box</i> Cadastrar</a></li>
-              <li><a href="editar-promocao.html"><i class="material-icons left">mode_edit</i> Editar Promoção</a></li>
+              <li id="adicionar-admin"><a ui-sref="administrativo-adicionar-admin"><i class="material-icons left">add_box</i> Adicionar</a></li>
+              <li id="editar-admin"><a ui-sref="administrativo-editar-admin"><i class="material-icons left">border_color</i> Editar</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="bold"><a id="gerenciarEstabelecimentos" class="collapsible-header waves-effect waves-cyan"><i class="material-icons left">local_offer</i>Estabelecimentos</a>
+          <div class="collapsible-body" style="">
+            <ul>
+              <li id="adicionar-estabelecimento"><a ui-sref="administrativo-adicionar-estabelecimento"><i class="material-icons left">add_box</i> Adicionar</a></li>
+              <li id="editar-estabelecimento"><a ui-sref="administrativo-editar-estabelecimento"><i class="material-icons left">border_color</i> Editar</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="bold"><a id="gerenciarEmpresas" class="collapsible-header waves-effect waves-cyan"><i class="material-icons left">work</i>Empresas</a>
+          <div class="collapsible-body" style="">
+            <ul>
+              <li id="adicionar-empresa"><a ui-sref="administrativo-adicionar-empresa"><i class="material-icons left">add_box</i> Adicionar</a></li>
+              <li id="editar-empresa"><a ui-sref="administrativo-editar-empresa"><i class="material-icons left">border_color</i> Editar</a></li>
             </ul>
           </div>
         </li>

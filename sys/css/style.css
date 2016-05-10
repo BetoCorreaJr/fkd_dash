@@ -29,3 +29,9 @@
 .nav-ztop {
     z-index: 1000!important;
 }
+
+/* Menu */
+
+.active-collapsible {
+    background-color: black!important;
+}
