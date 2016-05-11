@@ -3,8 +3,36 @@
     <div class="row">
       <div class="col s12">
         <div class="card">
-          <div class="card-content" style="text-align: center;" >
-            // Administrativo - Gerenciar Admins - Editar Estabelecimento
+          <div class="card-content">
+            <h5>Editar Estabelecimentos</h5>
+            <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>id</th>
+                    <th>Nome</th>
+                    <th>Segmento</th>
+                    <th>Bairro</th>
+                    <th class="center">Editar</th>
+                    <th class="center">Remover</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr ng-repeat="e in estabelecimentosList">
+                    <td>{{e.id_estabelecimento}}</td>
+                    <td>{{e.nome}}</td>
+                    <td>{{e.segmento}}</td>
+                    <td>{{e.bairro}}</td>
+                    <td class="center"><i class="material-icons">border_color</i></td>
+                    <td class="center"><i class="material-icons" ng-click="popupRemoveAdmin(admin.id_admin)">delete_forever</i></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div id="estabelecimentosLoader" class="progress yellow darken-2">
+                <div class="indeterminate black"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -22,6 +22,19 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', function($scope, $
                 .error(function(data) {
                     console.log(data);
                 });
+        } else if ($scope.view.viewState == "administrativo-editar-estabelecimento") {
+            console.log('Carregando Estabelecimentos...');
+            var estabelecimentosUrl = 'http://' + getServerIP() + '/tabela/view_estabelecimento.json?callback=JSON_CALLBACK';
+            $http.jsonp(estabelecimentosUrl)
+                .success(function(data) {
+                    console.log(data);
+                    $scope.estabelecimentosList = data;
+                    console.log('...Carregado');
+                    $("#estabelecimentosLoader").addClass("hide");
+                })
+                .error(function(data) {
+                    console.log(data);
+                });
         }
     };
 
@@ -84,5 +97,25 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', function($scope, $
                 });
             });
         }
+    };
+
+    $scope.popupRemoveAdmin = function(id) {
+        var usuario = $scope.usuario.usuario;
+        swal({
+            title: "An input!",
+            text: "Write something interesting:",
+            type: "input",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            animation: "slide-from-top",
+            inputPlaceholder: "Write something"
+        }, function(inputValue) {
+            if (inputValue === false) return false;
+            if (inputValue === "") {
+                swal.showInputError("You need to write something!");
+                return false;
+            }
+            swal("Nice!", "You wrote: " + inputValue, "success");
+        });
     };
 }]);
