@@ -1,10 +1,39 @@
-<section id="content" ng-init="setState('administrativo-menu', 'administrativo-adicionar-admin'); onLoad()">
+<section id="content" ng-init="setState('administrativo-menu', 'administrativo-adicionar-admin'); onLoad(); adminOnLoad()">
   <div class="container">
     <div class="row">
       <div class="col s12">
         <div class="card">
-          <div class="card-content" style="text-align: center;" >
-            // Administrativo - Gerenciar Admins - Adicionar Admin
+          <div class="card-content">
+            <h5>Adicionar Administrador</h5>
+            <div class="row">
+              <form class="col s12" name="form" ng-submit="adminPost()">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input ng-class="{false:'validate', true:'invalid'}[form.nome.$dirty && form.nome.$invalid]" id="nome" type="text" name="nome" ng-model="adminData.nome" required>
+                    <label for="nome">Nome</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input ng-class="{false:'validate', true:'invalid'}[form.sobrenome.$dirty && form.sobrenome.$invalid]" id="sobrenome" type="text" name="sobrenome" ng-model="adminData.sobrenome" required>
+                    <label for="sobrenome">Sobrenome</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input ng-class="{false:'validate', true:'invalid'}[form.usuario.$dirty && form.usuario.$invalid]" id="usuario" type="text" name="usuario" ng-model="adminData.usuario" maxlength="30" required>
+                    <label for="usuario">Usuário</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input ng-class="{false:'validate', true:'invalid'}[form.senha.$dirty && form.senha.$invalid]" id="senha" type="password" name="senha" ng-model="adminData.senha" maxlength="20" required>
+                    <label for="senha">Senha</label>
+                  </div>
+                </div>
+                  <button class="waves-effect waves-light btn yellow darken-2 black-text right">
+                    <i class="material-icons right">add_box</i><span>Adicionar</span>
+                  </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

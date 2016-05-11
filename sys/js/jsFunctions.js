@@ -6,3 +6,11 @@ function getServerIP() {
         return 'localhost:4567';
     }
 }
+
+function showPreloader() {
+    $('#preloader').removeClass('hide');
+}
+
+function hidePreloader() {
+    $('#preloader').addClass('hide');
+}

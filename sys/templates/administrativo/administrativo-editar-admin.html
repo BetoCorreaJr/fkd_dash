@@ -1,10 +1,38 @@
-<section id="content" ng-init="setState('administrativo-menu', 'administrativo-editar-admin'); onLoad()">
+<section id="content" ng-init="setState('administrativo-menu', 'administrativo-editar-admin'); onLoad(); adminOnLoad()">
   <div class="container">
     <div class="row">
       <div class="col s12">
         <div class="card">
-          <div class="card-content" style="text-align: center;" >
-            // Administrativo - Gerenciar Admins - Editar Admin
+          <div class="card-content">
+            <h5>Editar Administradores</h5>
+            <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>id</th>
+                    <th>Nome</th>
+                    <th>Sobrenome</th>
+                    <th>Usuário</th>
+                    <th class="center">Editar</th>
+                    <th class="center">Remover</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr ng-repeat="admin in adminList">
+                    <td>{{admin.id_admin}}</td>
+                    <td>{{admin.nome}}</td>
+                    <td>{{admin.sobrenome}}</td>
+                    <td>{{admin.usuario}}</td>
+                    <td class="center"><i class="material-icons">border_color</i></td>
+                    <td class="center"><i class="material-icons">delete_forever</i></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div id="adminLoader" class="progress yellow darken-2">
+                <div class="indeterminate black"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

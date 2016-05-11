@@ -17,9 +17,9 @@ fkd.controller('MainController', ['$scope', '$sce', '$http', function($scope, $s
     $scope.onLoad = function() {
         console.log('onLoad');
         if ($scope.view.menuState == "acesso-menu") {
-            setTimeout(function() {
-                $scope.ifLogin();
-            }, 0);
+            // setTimeout(function() {
+            $scope.ifLogin();
+            // }, 0);
         }
         if ($scope.view.menuState == "acesso-menu") {
             $scope.acessoState();
@@ -74,6 +74,7 @@ fkd.controller('MainController', ['$scope', '$sce', '$http', function($scope, $s
     // Determina item ativo no menu Administrativo
     $scope.administrativoState = function() {
         console.log('adminstrativoState');
+        // Admin
         if ($scope.view.viewState == "administrativo-adicionar-admin") {
             console.log('administrativo-adicionar-admin');
             $("#gerenciarAdmins").addClass("active");
@@ -82,7 +83,9 @@ fkd.controller('MainController', ['$scope', '$sce', '$http', function($scope, $s
             console.log('administrativo-editar-admin');
             $("#gerenciarAdmins").addClass("active");
             $("#editar-admin").addClass("active active-collapsible");
-        } else if ($scope.view.viewState == "administrativo-adicionar-estabelecimento") {
+        }
+        // Estabelecimento
+        else if ($scope.view.viewState == "administrativo-adicionar-estabelecimento") {
             console.log('administrativo-adicionar-estabelecimento');
             $("#gerenciarEstabelecimentos").addClass("active");
             $("#adicionar-estabelecimento").addClass("active active-collapsible");
@@ -90,7 +93,9 @@ fkd.controller('MainController', ['$scope', '$sce', '$http', function($scope, $s
             console.log('administrativo-editar-estabelecimento');
             $("#gerenciarEstabelecimentos").addClass("active");
             $("#editar-estabelecimento").addClass("active active-collapsible");
-        } else if ($scope.view.viewState == "administrativo-adicionar-empresa") {
+        }
+        // Empresa
+        else if ($scope.view.viewState == "administrativo-adicionar-empresa") {
             console.log('administrativo-adicionar-empresa');
             $("#gerenciarEmpresas").addClass("active");
             $("#adicionar-empresa").addClass("active active-collapsible");

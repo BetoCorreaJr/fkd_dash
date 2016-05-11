@@ -67,6 +67,7 @@ fkd.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
                 },
                 "view": {
                     templateUrl: "templates/administrativo/administrativo.html",
+                    controller: "AdminController"
                 }
             }
         })
@@ -79,6 +80,7 @@ fkd.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
                 },
                 "view": {
                     templateUrl: "templates/administrativo/administrativo-adicionar-admin.html",
+                    controller: "AdminController"
                 }
             }
         })
@@ -91,6 +93,7 @@ fkd.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
                 },
                 "view": {
                     templateUrl: "templates/administrativo/administrativo-editar-admin.html",
+                    controller: "AdminController"
                 }
             }
         })
@@ -103,6 +106,7 @@ fkd.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
                 },
                 "view": {
                     templateUrl: "templates/administrativo/administrativo-adicionar-estabelecimento.html",
+                    controller: "AdminController"
                 }
             }
         })
@@ -115,6 +119,7 @@ fkd.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
                 },
                 "view": {
                     templateUrl: "templates/administrativo/administrativo-editar-estabelecimento.html",
+                    controller: "AdminController"
                 }
             }
         })
@@ -127,6 +132,7 @@ fkd.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
                 },
                 "view": {
                     templateUrl: "templates/administrativo/administrativo-adicionar-empresa.html",
+                    controller: "AdminController"
                 }
             }
         })
@@ -139,6 +145,7 @@ fkd.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
                 },
                 "view": {
                     templateUrl: "templates/administrativo/administrativo-editar-empresa.html",
+                    controller: "AdminController"
                 }
             }
         });

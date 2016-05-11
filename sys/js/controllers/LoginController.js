@@ -10,6 +10,7 @@ fkd.controller('LoginController', ['$scope', '$sce', '$http', function($scope, $
 
     // Login acesso-administrativo
     $scope.adminLogin = function() {
+        showPreloader();
         $http({
             method: 'POST',
             url: 'http://' + getServerIP() + '/login_admin',
@@ -27,6 +28,7 @@ fkd.controller('LoginController', ['$scope', '$sce', '$http', function($scope, $
                 senha: $scope.loginData.pwd
             }
         }).success(function(data) {
+            hidePreloader();
             console.log(data);
             localStorage.setItem('usuario', $scope.usuario.usuario = $scope.loginData.usuario);
             localStorage.setItem('tipo', $scope.usuario.tipo = 'Administrativo');
@@ -36,6 +38,7 @@ fkd.controller('LoginController', ['$scope', '$sce', '$http', function($scope, $
             $scope.form.pwd.$dirty = false;
             window.location.href = "#/administrativo";
         }).error(function(data) {
+            hidePreloader();
             console.log(data);
             swal({
                 title: data,
