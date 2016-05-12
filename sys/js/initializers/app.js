@@ -84,15 +84,15 @@ fkd.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
                 }
             }
         })
-        .state('administrativo-editar-admin', {
-            url: "/administrativo/editar-admin",
+        .state('administrativo-gerenciar-admin', {
+            url: "/administrativo/gerenciar-admin",
             views: {
                 "menu": {
                     templateUrl: "templates/menu/administrativo-menu.html",
                     controller: "MenuController"
                 },
                 "view": {
-                    templateUrl: "templates/administrativo/administrativo-editar-admin.html",
+                    templateUrl: "templates/administrativo/administrativo-gerenciar-admin.html",
                     controller: "AdminController"
                 }
             }
@@ -110,15 +110,15 @@ fkd.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
                 }
             }
         })
-        .state('administrativo-editar-estabelecimento', {
-            url: "/administrativo/editar-estabelecimento",
+        .state('administrativo-gerenciar-estabelecimento', {
+            url: "/administrativo/gerenciar-estabelecimento",
             views: {
                 "menu": {
                     templateUrl: "templates/menu/administrativo-menu.html",
                     controller: "MenuController"
                 },
                 "view": {
-                    templateUrl: "templates/administrativo/administrativo-editar-estabelecimento.html",
+                    templateUrl: "templates/administrativo/administrativo-gerenciar-estabelecimento.html",
                     controller: "AdminController"
                 }
             }
@@ -136,15 +136,15 @@ fkd.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
                 }
             }
         })
-        .state('administrativo-editar-empresa', {
-            url: "/administrativo/editar-empresa",
+        .state('administrativo-gerenciar-empresa', {
+            url: "/administrativo/gerenciar-empresa",
             views: {
                 "menu": {
                     templateUrl: "templates/menu/administrativo-menu.html",
                     controller: "MenuController"
                 },
                 "view": {
-                    templateUrl: "templates/administrativo/administrativo-editar-empresa.html",
+                    templateUrl: "templates/administrativo/administrativo-gerenciar-empresa.html",
                     controller: "AdminController"
                 }
             }

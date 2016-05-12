@@ -10,7 +10,7 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', function($scope, $
     $scope.adminOnLoad = function() {
         console.log('adminOnLoad');
 
-        if ($scope.view.viewState == "administrativo-editar-admin") {
+        if ($scope.view.viewState == "administrativo-gerenciar-admin") {
             console.log('Carregando Administradores...');
             $("#adminLoader").removeClass("hide");
             var adminUrl = 'http://' + getServerIP() + '/tabela/view_admin.json?callback=JSON_CALLBACK';
@@ -23,7 +23,7 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', function($scope, $
                 .error(function(data) {
                     console.log(data);
                 });
-        } else if ($scope.view.viewState == "administrativo-editar-estabelecimento") {
+        } else if ($scope.view.viewState == "administrativo-gerenciar-estabelecimento") {
             console.log('Carregando Estabelecimentos...');
             $("#estabelecimentosLoader").removeClass("hide");
             var estabelecimentosUrl = 'http://' + getServerIP() + '/tabela/view_estabelecimento.json?callback=JSON_CALLBACK';
@@ -33,6 +33,20 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', function($scope, $
                     $scope.estabelecimentosList = data;
                     console.log('...Carregado');
                     $("#estabelecimentosLoader").addClass("hide");
+                })
+                .error(function(data) {
+                    console.log(data);
+                });
+        } else if ($scope.view.viewState == "administrativo-gerenciar-empresa") {
+            console.log('Carregando Estabelecimentos...');
+            $("#empresasLoader").removeClass("hide");
+            var empresasUrl = 'http://' + getServerIP() + '/tabela/view_empresa.json?callback=JSON_CALLBACK';
+            $http.jsonp(empresasUrl)
+                .success(function(data) {
+                    console.log(data);
+                    $scope.empresasList = data;
+                    console.log('...Carregado');
+                    $("#empresasLoader").addClass("hide");
                 })
                 .error(function(data) {
                     console.log(data);
@@ -101,10 +115,14 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', function($scope, $
         }
     };
 
-    $scope.popupRemoveAdmin = function(id) {
-        var usuario = $scope.usuario.usuario;
-        var senha = 'root';
+    // Melhorar
+    $scope.popupRemoveAdmin = function(data) {
+        $scope.adminSelect = data;
+        $('#modalRemoveAdmin').openModal();
+        $('#pwd').focus();
+    };
 
+    $scope.removeAdmin = function() {
         showPreloader();
 
         $http({
@@ -120,16 +138,21 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', function($scope, $
                 return str.join("&");
             },
             data: {
-                usuario: usuario,
-                senha: senha,
-                id: id
+                usuario: $scope.usuario.usuario,
+                senha: $scope.deleteData.pwd,
+                id: $scope.adminSelect.id_admin
             }
         }).success(function(data) {
             hidePreloader();
             Materialize.toast(data, 4000);
+            $scope.deleteData.pwd = "";
+            $scope.form.pwd.$dirty = false;
+            $('#modalRemoveAdmin').closeModal();
             $scope.adminOnLoad();
         }).error(function(data) {
             hidePreloader();
+            $scope.deleteData.pwd = "";
+            Materialize.toast('Senha errada.', 4000);
             console.log(data);
         });
     };

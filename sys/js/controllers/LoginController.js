@@ -42,7 +42,7 @@ fkd.controller('LoginController', ['$scope', '$sce', '$http', function($scope, $
             console.log(data);
             swal({
                 title: data,
-                text: 'Seu usuário ou senha estão errados.',
+                text: 'Por favor, verifique seus dados.',
                 timer: 3000,
                 type: "error",
                 showConfirmButton: false

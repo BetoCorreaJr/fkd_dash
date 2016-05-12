@@ -1,0 +1,41 @@
+<section id="content" ng-init="setState('administrativo-menu', 'administrativo-gerenciar-empresa'); onLoad(); adminOnLoad()">
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <div class="card">
+          <div class="card-content">
+            <h5>Gerenciar Empresas</h5>
+            <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>id</th>
+                    <th>Razão Social</th>
+                    <th>Nome Fantasia</th>
+                    <th>CNPJ</th>
+                    <th class="center"><!-- Info --></th>
+                    <th class="center"><!-- Remover --></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr ng-repeat="e in empresasList" watch>
+                    <td>{{e.id_empresa}}</td>
+                    <td>{{e.razao_social}}</td>
+                    <td>{{e.nome_fantasia}}</td>
+                    <td>{{e.cnpj}}</td>
+                    <td class="center"><i tooltipped data-position="top" data-delay="150" data-tooltip="Mais informações" class="material-icons info-hover" ng-click>info_outline</i></td>
+                    <td class="center"><i tooltipped data-position="top" data-delay="150" data-tooltip="Remover" class="material-icons delete-hover" ng-click>delete_forever</i></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div id="empresasLoader" class="progress yellow darken-2">
+                <div class="indeterminate black"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

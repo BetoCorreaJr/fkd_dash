@@ -1,0 +1,72 @@
+<section id="content" ng-init="setState('administrativo-menu', 'administrativo-gerenciar-admin'); onLoad(); adminOnLoad()">
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <div class="card">
+          <div class="card-content">
+            <nav class="yellow darken-2">
+              <div class="nav-wrapper">
+                <div class="col s12">
+                  <a class="breadcrumb black-text">Gerenciar Administradores</a>
+                </div>
+              </div>
+            </nav>
+            <br>
+            <div>
+              <table class="highlight">
+                <thead>
+                  <tr>
+                    <th>id</th>
+                    <th>Nome</th>
+                    <th>Sobrenome</th>
+                    <th>Usuário</th>
+                    <th class="center"><!-- Info --></th>
+                    <th class="center"><!-- Remover --></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr ng-repeat="admin in adminList" watch>
+                    <td>{{admin.id_admin}}</td>
+                    <td>{{admin.nome}}</td>
+                    <td>{{admin.sobrenome}}</td>
+                    <td>{{admin.usuario}}</td>
+                    <td class="center"><i tooltipped data-position="top" data-delay="150" data-tooltip="Editar" class="material-icons info-hover" ng-click="">border_color</i></td>
+                    <td class="center"><i tooltipped data-position="top" data-delay="150" data-tooltip="Remover" class="material-icons delete-hover" ng-click="popupRemoveAdmin(admin)">delete_forever</i></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div id="adminLoader" class="progress yellow darken-2">
+                <div class="indeterminate black"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal Structure -->
+<div id="modalRemoveAdmin" class="modal">
+  <form name="form" ng-submit="removeAdmin()">
+    <div class="modal-content">
+      <br>
+      <h5 class="center">Deseja realmente remover <strong>{{adminSelect.usuario}}</strong>?</h4>
+      <p class="center">Digite sua senha para confirmar:</p>
+      <br>
+      <div class="row">
+        <div class="input-field col s6 offset-s3">
+          <input ng-class="{false:'', true:'invalid'}[form.pwd.$dirty && form.pwd.$invalid]" id="pwd" type="password" name="pwd" ng-model="deleteData.pwd" required>
+          <label for="senha">Senha</label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="row">
+        <button type="submit" class="modal-action waves-effect waves-green btn-flat black-text">Confirmar</button>
+        <button type="button" class="modal-action modal-close waves-effect waves-red btn-flat black-text">Cancelar</button>
+      </div>
+    </div>
+  </form>
+</div>

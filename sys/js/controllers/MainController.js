@@ -79,30 +79,30 @@ fkd.controller('MainController', ['$scope', '$sce', '$http', function($scope, $s
             console.log('administrativo-adicionar-admin');
             $("#gerenciarAdmins").addClass("active");
             $("#adicionar-admin").addClass("active active-collapsible");
-        } else if ($scope.view.viewState == "administrativo-editar-admin") {
-            console.log('administrativo-editar-admin');
+        } else if ($scope.view.viewState == "administrativo-gerenciar-admin") {
+            console.log('administrativo-gerenciar-admin');
             $("#gerenciarAdmins").addClass("active");
-            $("#editar-admin").addClass("active active-collapsible");
+            $("#gerenciar-admin").addClass("active active-collapsible");
         }
         // Estabelecimento
         else if ($scope.view.viewState == "administrativo-adicionar-estabelecimento") {
             console.log('administrativo-adicionar-estabelecimento');
             $("#gerenciarEstabelecimentos").addClass("active");
             $("#adicionar-estabelecimento").addClass("active active-collapsible");
-        } else if ($scope.view.viewState == "administrativo-editar-estabelecimento") {
-            console.log('administrativo-editar-estabelecimento');
+        } else if ($scope.view.viewState == "administrativo-gerenciar-estabelecimento") {
+            console.log('administrativo-gerenciar-estabelecimento');
             $("#gerenciarEstabelecimentos").addClass("active");
-            $("#editar-estabelecimento").addClass("active active-collapsible");
+            $("#gerenciar-estabelecimento").addClass("active active-collapsible");
         }
         // Empresa
         else if ($scope.view.viewState == "administrativo-adicionar-empresa") {
             console.log('administrativo-adicionar-empresa');
             $("#gerenciarEmpresas").addClass("active");
             $("#adicionar-empresa").addClass("active active-collapsible");
-        } else if ($scope.view.viewState == "administrativo-editar-empresa") {
-            console.log('administrativo-editar-empresa');
+        } else if ($scope.view.viewState == "administrativo-gerenciar-empresa") {
+            console.log('administrativo-gerenciar-empresa');
             $("#gerenciarEmpresas").addClass("active");
-            $("#editar-empresa").addClass("active active-collapsible");
+            $("#gerenciar-empresa").addClass("active active-collapsible");
         }
     };
 }]);

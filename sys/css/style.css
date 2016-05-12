@@ -35,3 +35,18 @@
 .active-collapsible {
     background-color: black!important;
 }
+
+/* Angular Link */
+
+[ng-click], [data-ng-click], [x-ng-click] {
+    cursor: pointer;
+}
+
+/* Lista */
+
+i.info-hover:hover {
+    color: #6699CC;
+}
+i.delete-hover:hover {
+    color: #ee6e73;
+}
