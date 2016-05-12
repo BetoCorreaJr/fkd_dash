@@ -12,6 +12,7 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', function($scope, $
 
         if ($scope.view.viewState == "administrativo-editar-admin") {
             console.log('Carregando Administradores...');
+            $("#adminLoader").removeClass("hide");
             var adminUrl = 'http://' + getServerIP() + '/tabela/view_admin.json?callback=JSON_CALLBACK';
             $http.jsonp(adminUrl)
                 .success(function(data) {
@@ -24,6 +25,7 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', function($scope, $
                 });
         } else if ($scope.view.viewState == "administrativo-editar-estabelecimento") {
             console.log('Carregando Estabelecimentos...');
+            $("#estabelecimentosLoader").removeClass("hide");
             var estabelecimentosUrl = 'http://' + getServerIP() + '/tabela/view_estabelecimento.json?callback=JSON_CALLBACK';
             $http.jsonp(estabelecimentosUrl)
                 .success(function(data) {
@@ -101,21 +103,34 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', function($scope, $
 
     $scope.popupRemoveAdmin = function(id) {
         var usuario = $scope.usuario.usuario;
-        swal({
-            title: "An input!",
-            text: "Write something interesting:",
-            type: "input",
-            showCancelButton: true,
-            closeOnConfirm: false,
-            animation: "slide-from-top",
-            inputPlaceholder: "Write something"
-        }, function(inputValue) {
-            if (inputValue === false) return false;
-            if (inputValue === "") {
-                swal.showInputError("You need to write something!");
-                return false;
+        var senha = 'root';
+
+        showPreloader();
+
+        $http({
+            method: 'POST',
+            url: 'http://' + getServerIP() + '/remover_admin',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            transformRequest: function(obj) {
+                var str = [];
+                for (var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+            },
+            data: {
+                usuario: usuario,
+                senha: senha,
+                id: id
             }
-            swal("Nice!", "You wrote: " + inputValue, "success");
+        }).success(function(data) {
+            hidePreloader();
+            Materialize.toast(data, 4000);
+            $scope.adminOnLoad();
+        }).error(function(data) {
+            hidePreloader();
+            console.log(data);
         });
     };
 }]);

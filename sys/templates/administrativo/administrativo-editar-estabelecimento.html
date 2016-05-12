@@ -19,7 +19,7 @@
                 </thead>
 
                 <tbody>
-                  <tr ng-repeat="e in estabelecimentosList">
+                  <tr ng-repeat="e in estabelecimentosList | orderBy: 'id_estabelecimento'">
                     <td>{{e.id_estabelecimento}}</td>
                     <td>{{e.nome}}</td>
                     <td>{{e.segmento}}</td>
