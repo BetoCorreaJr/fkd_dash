@@ -1,5 +1,7 @@
 fkd.controller('LoginController', ['$scope', '$sce', '$http', function($scope, $sce, $http) {
+    // Efetua o login
     $scope.doLogin = function() {
+        // Verifica qual é o tipo de login e chama sua função correspondente
         if ($scope.view.viewState == "acesso-administrativo") {
             console.log("Fazendo login (Adminstrativo)...");
             console.log("Usuário: " + $scope.loginData.usuario);

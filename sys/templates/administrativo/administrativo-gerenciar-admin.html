@@ -3,15 +3,14 @@
     <div class="row">
       <div class="col s12">
         <div class="card">
-          <div class="card-content">
-            <nav class="yellow darken-2">
-              <div class="nav-wrapper">
-                <div class="col s12">
-                  <a class="breadcrumb black-text">Gerenciar Administradores</a>
-                </div>
+          <nav class="yellow darken-2">
+            <div class="nav-wrapper">
+              <div class="col s12">
+                <a class="breadcrumb black-text">Gerenciar Administradores</a>
               </div>
-            </nav>
-            <br>
+            </div>
+          </nav>
+          <div class="card-content">
             <div>
               <table class="highlight">
                 <thead>
@@ -31,7 +30,7 @@
                     <td>{{admin.nome}}</td>
                     <td>{{admin.sobrenome}}</td>
                     <td>{{admin.usuario}}</td>
-                    <td class="center"><i tooltipped data-position="top" data-delay="150" data-tooltip="Editar" class="material-icons info-hover" ng-click="">border_color</i></td>
+                    <td class="center"><i tooltipped data-position="top" data-delay="150" data-tooltip="Editar" class="material-icons info-hover" ng-click="editarAdmin(admin)">border_color</i></td>
                     <td class="center"><i tooltipped data-position="top" data-delay="150" data-tooltip="Remover" class="material-icons delete-hover" ng-click="popupRemoveAdmin(admin)">delete_forever</i></td>
                   </tr>
                 </tbody>

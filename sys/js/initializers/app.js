@@ -97,6 +97,32 @@ fkd.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
                 }
             }
         })
+        .state('administrativo-editar-admin', {
+            url: "/administrativo/editar-admin",
+            views: {
+                "menu": {
+                    templateUrl: "templates/menu/administrativo-menu.html",
+                    controller: "MenuController"
+                },
+                "view": {
+                    templateUrl: "templates/administrativo/administrativo-editar-admin.html",
+                    controller: "AdminController"
+                }
+            }
+        })
+        .state('administrativo-editar-senha-admin', {
+            url: "/administrativo/editar-senha-admin",
+            views: {
+                "menu": {
+                    templateUrl: "templates/menu/administrativo-menu.html",
+                    controller: "MenuController"
+                },
+                "view": {
+                    templateUrl: "templates/administrativo/administrativo-editar-senha-admin.html",
+                    controller: "AdminController"
+                }
+            }
+        })
         .state('administrativo-adicionar-estabelecimento', {
             url: "/administrativo/adicionar-estabelecimento",
             views: {

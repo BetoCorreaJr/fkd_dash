@@ -3,8 +3,62 @@
     <div class="row">
       <div class="col s12">
         <div class="card">
-          <div class="card-content" style="text-align: center;" >
-            // Administrativo - Gerenciar Admins - Adicionar Empresa
+          <nav class="yellow darken-2">
+            <div class="nav-wrapper">
+              <div class="col s12">
+                <a class="breadcrumb black-text">Adicionar Empresa</a>
+              </div>
+            </div>
+          </nav>
+          <div class="card-content">
+            <div class="row">
+              <form class="col s12" name="form" ng-submit>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input ng-class="{false:'validate', true:'invalid'}[form.rs.$dirty && form.rs.$invalid]" id="rs" type="text" name="rs" ng-model="empresaData.rs" required>
+                    <label for="rs">Razão Social</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input ng-class="{false:'validate', true:'invalid'}[form.nf.$dirty && form.nf.$invalid]" id="nf" type="text" name="nf" ng-model="empresaData.nf" required>
+                    <label for="nf">Nome Fantasia</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input ng-class="{false:'validate', true:'invalid'}[form.email.$dirty && form.email.$invalid]" id="email" type="email" name="email" ng-model="empresaData.email" required>
+                    <label for="email">Email</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input ng-class="{false:'validate', true:'invalid'}[form.tel.$dirty && form.tel.$invalid]" id="tel" type="text" name="tel" ng-model="empresaData.tel" required>
+                    <label for="tel">Telefone</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input ng-class="{false:'validate', true:'invalid'}[form.cnpj.$dirty && form.cnpj.$invalid]" id="cnpj" type="text" name="cnpj" ng-model="empresaData.cnpj" required>
+                    <label for="cnpj">CNPJ</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input ng-class="{false:'validate', true:'invalid'}[form.senha.$dirty && form.senha.$invalid]" id="senha" type="password" name="senha" ng-model="empresaData.senha" required>
+                    <label for="senha">Senha</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="file-field input-field col s12">
+                    <div class="btn yellow darken-2 black-text">
+                      <span>Logomarca</span>
+                      <input type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                      <input class="file-path validate" type="text" placeholder="Enviar arquivo de logomarca (Opcional)">
+                    </div>
+                  </div>
+                </div>
+                <button class="waves-effect waves-light btn yellow darken-2 black-text right">
+                  <i class="material-icons right">add_box</i><span>Adicionar</span>
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

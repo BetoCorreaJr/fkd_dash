@@ -50,3 +50,14 @@ i.info-hover:hover {
 i.delete-hover:hover {
     color: #ee6e73;
 }
+
+/* Breadcrumb */
+
+.breadcrumb:before {
+    color: black!important;
+}
+.breadcrumb-hover:hover {
+    /*text-decoration: underline;*/
+    border-bottom: 2px solid #000;
+    padding-bottom: 3px;
+}

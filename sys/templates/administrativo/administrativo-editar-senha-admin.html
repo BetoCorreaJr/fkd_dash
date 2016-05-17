@@ -1,0 +1,62 @@
+<section id="content" ng-init="setState('administrativo-menu', 'administrativo-editar-senha-admin'); onLoad(); adminOnLoad()">
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <div class="card">
+          <nav class="yellow darken-2">
+            <div class="nav-wrapper">
+              <div class="col s12">
+                <a class="breadcrumb black-text" ui-sref="administrativo-gerenciar-admin"><span class="breadcrumb-hover">Gerenciar Administradores</span></a>
+                <a class="breadcrumb black-text" ui-sref="administrativo-editar-admin"><span class="breadcrumb-hover">Editar Administrador</span></a>
+                <a class="breadcrumb black-text">Editar Senha</a>
+              </div>
+            </div>
+          </nav>
+          <div class="card-content">
+            <div class="row">
+              <form class="col s12" name="editar" ng-submit="popupEditarSenhaAdmin()">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input ng-class="{false:'validate', true:'invalid'}[editar.senha.$dirty && editar.senha.$invalid]" id="senha" type="password" name="senha" ng-model="adminSelect.senha" maxlength="20" required>
+                    <label for="senha">Senha</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input ng-class="{false:'validate', true:'invalid'}[editar.confirmaSenha.$dirty && editar.confirmaSenha.$invalid]" id="confirmaSenha" type="password" name="senha" ng-model="adminSelect.confirmaSenha" ng-required="adminSelect.senha" maxlength="20" required>
+                    <label for="confirmaSenha">Confirme a senha</label>
+                  </div>
+                </div>
+                <button type="submit" class="waves-effect waves-light btn yellow darken-2 black-text right">
+                  <i class="material-icons right">sync</i><span>Atualizar senha</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal Structure -->
+<div id="modalSenhaAdmin" class="modal">
+  <form name="form" ng-submit="()">
+    <div class="modal-content">
+      <br>
+      <h5 class="center">Deseja realmente alterar <strong>{{adminSelect.usuario}}</strong>?</h4>
+      <p class="center">Digite sua senha para confirmar:</p>
+      <br>
+      <div class="row">
+        <div class="input-field col s6 offset-s3">
+          <input ng-class="{false:'', true:'invalid'}[form.pwd.$dirty && form.pwd.$invalid]" id="pwd" type="password" name="pwd" ng-model="updateData.pwd" required>
+          <label for="senha">Senha</label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="row">
+        <button type="submit" class="modal-action waves-effect waves-green btn-flat black-text">Confirmar</button>
+        <button type="button" class="modal-action modal-close waves-effect waves-red btn-flat black-text">Cancelar</button>
+      </div>
+    </div>
+  </form>
+</div>

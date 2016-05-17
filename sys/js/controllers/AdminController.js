@@ -10,6 +10,10 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', function($scope, $
     $scope.adminOnLoad = function() {
         console.log('adminOnLoad');
 
+        // Pode ser usado caso precise esconder conteúdo enquanto dados são carregados antes de exibí-lo
+        $scope.exibirConteudo = false;
+
+        // Verifica qual é o viewState pra carregar os dados corretos
         if ($scope.view.viewState == "administrativo-gerenciar-admin") {
             console.log('Carregando Administradores...');
             $("#adminLoader").removeClass("hide");
@@ -23,13 +27,30 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', function($scope, $
                 .error(function(data) {
                     console.log(data);
                 });
+        } else if ($scope.view.viewState == "administrativo-editar-admin") {
+            $scope.adminSelect = JSON.parse(sessionStorage.getItem('adminSelect'));
+        } else if ($scope.view.viewState == "administrativo-editar-senha-admin") {
+            $scope.adminSelect = JSON.parse(sessionStorage.getItem('adminSelect'));
+        } else if ($scope.view.viewState == "administrativo-adicionar-estabelecimento") {
+            console.log('Carregando lista de segmentos...');
+            showPreloader();
+
+            $http.jsonp('http://' + getServerIP() + '/tabela/segmento.json?callback=JSON_CALLBACK')
+                .success(function(data) {
+                    $scope.segmentosList = data;
+                    console.log('...Carregado');
+                    hidePreloader();
+                    $scope.exibirConteudo = true;
+                })
+                .error(function(data) {
+                    console.log(data);
+                });
         } else if ($scope.view.viewState == "administrativo-gerenciar-estabelecimento") {
             console.log('Carregando Estabelecimentos...');
             $("#estabelecimentosLoader").removeClass("hide");
             var estabelecimentosUrl = 'http://' + getServerIP() + '/tabela/view_estabelecimento.json?callback=JSON_CALLBACK';
             $http.jsonp(estabelecimentosUrl)
                 .success(function(data) {
-                    console.log(data);
                     $scope.estabelecimentosList = data;
                     console.log('...Carregado');
                     $("#estabelecimentosLoader").addClass("hide");
@@ -115,7 +136,56 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', function($scope, $
         }
     };
 
-    // Melhorar
+    $scope.editarAdmin = function(data) {
+        // Salva dados para ser carregado novamente onLoad após mudança de view
+        sessionStorage.setItem('adminSelect', JSON.stringify(data));
+        window.location.href = "#/administrativo/editar-admin";
+    };
+
+    $scope.popupEditarAdmin = function() {
+        $('#modalEditarAdmin').openModal();
+        $('#pwd').focus();
+    };
+
+    $scope.atualizaAdmin = function() {
+        showPreloader();
+
+        $http({
+            method: 'POST',
+            url: 'http://' + getServerIP() + '/atualiza_admin',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            transformRequest: function(obj) {
+                var str = [];
+                for (var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+            },
+            data: {
+                usuario: $scope.usuario.usuario,
+                senha: $scope.updateData.pwd,
+                id: $scope.adminSelect.id_admin,
+                nome: $scope.adminSelect.nome,
+                sobrenome: $scope.adminSelect.sobrenome,
+                usuario_alterado: $scope.adminSelect.usuario
+            }
+        }).success(function(data) {
+            hidePreloader();
+            Materialize.toast(data, 4000);
+            $scope.updateData.pwd = "";
+            $scope.form.pwd.$dirty = false;
+            $('#modalEditarAdmin').closeModal();
+            window.location.href = "#/administrativo/gerenciar-admin";
+            $scope.adminOnLoad();
+        }).error(function(data) {
+            hidePreloader();
+            $scope.updateData.pwd = "";
+            Materialize.toast('Senha errada.', 4000);
+            console.log(data);
+        });
+    };
+
     $scope.popupRemoveAdmin = function(data) {
         $scope.adminSelect = data;
         $('#modalRemoveAdmin').openModal();

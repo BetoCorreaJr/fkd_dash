@@ -3,8 +3,138 @@
     <div class="row">
       <div class="col s12">
         <div class="card">
-          <div class="card-content" style="text-align: center;" >
-            // Administrativo - Gerenciar Admins - Adicionar Estabelecimento
+          <nav class="yellow darken-2">
+            <div class="nav-wrapper">
+              <div class="col s12">
+                <a class="breadcrumb black-text">Adicionar Estabelecimento</a>
+              </div>
+            </div>
+          </nav>
+          <div class="card-content">
+            <div class="row" ng-show="exibirConteudo">
+              <form class="col s12" name="form" ng-submit>
+                <div class="row">
+                  <div class="input-field col s8">
+                    <input ng-class="{false:'validate', true:'invalid'}[form.nome.$dirty && form.nome.$invalid]" id="nome" type="text" name="nome" ng-model="estabelecimentoData.nome" required>
+                    <label for="nome">Nome</label>
+                  </div>
+                  <div class="col s4" input-field>
+                    <select ng-model="estabelecimentoData.segmento" material-select watch id="segmento" name="segmento" required>
+                      <option value="" disabled selected>Segmento</option>
+                      <option ng-repeat="value in segmentosList">{{value.nome}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input ng-class="{false:'validate', true:'invalid'}[form.endereco.$dirty && form.endereco.$invalid]" id="endereco" type="text" name="endereco" ng-model="estabelecimentoData.endereco" required>
+                    <label for="endereco">Endereço</label>
+                  </div>
+                  <div class="input-field col s2">
+                    <input ng-class="{false:'validate', true:'invalid'}[form.numero.$dirty && form.numero.$invalid]" id="numero" type="text" name="numero" ng-model="estabelecimentoData.numero" required>
+                    <label for="numero">Número</label>
+                  </div>
+                  <div class="input-field col s4">
+                    <input ng-class="{false:'validate', true:'invalid'}[form.complemento.$dirty && form.complemento.$invalid]" id="complemento" type="text" name="complemento" ng-model="estabelecimentoData.complemento" required>
+                    <label for="complemento">Complemento (Opcional)</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s3">
+                    <input ng-class="{false:'validate', true:'invalid'}[form.bairro.$dirty && form.bairro.$invalid]" id="bairro" type="text" name="bairro" ng-model="estabelecimentoData.bairro" required>
+                    <label for="bairro">Bairro</label>
+                  </div>
+                  <div class="input-field col s2">
+                    <input ng-class="{false:'validate', true:'invalid'}[form.cep.$dirty && form.cep.$invalid]" id="cep" type="text" name="cep" ng-model="estabelecimentoData.cep" required>
+                    <label for="cep">CEP</label>
+                  </div>
+                  <div class="input-field col s4">
+                    <input ng-class="{false:'validate', true:'invalid'}[form.cidade.$dirty && form.cidade.$invalid]" id="cidade" type="text" name="cidade" ng-model="estabelecimentoData.cidade" required>
+                    <label for="cidade">Cidade</label>
+                  </div>
+                  <!-- <div class="input-field col s2">
+                    <input ng-class="{false:'validate', true:'invalid'}[form.uf.$dirty && form.uf.$invalid]" id="uf" type="text" name="uf" ng-model="estabelecimentoData.uf" required>
+                    <label for="uf">UF</label>
+                  </div> -->
+                  <div class="col s3" input-field>
+                    <select ng-model="estabelecimentoData.uf" material-select watch id="uf" name="uf" required>
+                      <option value="" disabled selected>UF</option>
+                      <option value="AC">AC - Acre</option>
+                      <option value="AL">AL - Alagoas</option>
+                      <option value="AP">AP - Amapá</option>
+                      <option value="AM">AM - Amazonas</option>
+                      <option value="BA">BA - Bahia</option>
+                      <option value="CE">CE - Ceará</option>
+                      <option value="DF">DF - Distrito Federal</option>
+                      <option value="ES">ES - Espirito Santo</option>
+                      <option value="GO">GO - Goiás</option>
+                      <option value="MA">MA - Maranhão</option>
+                      <option value="MT">MT - Mato Grosso</option>
+                      <option value="MS">MS - Mato Grosso do Sul</option>
+                      <option value="MG">MG - Minas Gerais</option>
+                      <option value="PA">PA - Pará</option>
+                      <option value="PB">PB - Paraíba</option>
+                      <option value="PR">PR - Paraná</option>
+                      <option value="PE">PE - Pernambuco</option>
+                      <option value="PI">PI - Piauí</option>
+                      <option value="RJ">RJ - Rio de Janeiro</option>
+                      <option value="RN">RN - Rio Grande do Norte</option>
+                      <option value="RS">RS - Rio Grande do Sul</option>
+                      <option value="RO">RO - Rondônia</option>
+                      <option value="RR">RR - Roraima</option>
+                      <option value="SC">SC - Santa Catarina</option>
+                      <option value="SP">SP - São Paulo</option>
+                      <option value="SE">SE - Sergipe</option>
+                      <option value="TO">TO - Tocantins</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s4">
+                    <input ng-class="{false:'validate', true:'invalid'}[form.email.$dirty && form.email.$invalid]" id="email" type="email" name="email" ng-model="estabelecimentoData.email" required>
+                    <label for="email">Email</label>
+                  </div>
+                  <div class="input-field col s3">
+                    <input ng-class="{false:'validate', true:'invalid'}[form.telefone.$dirty && form.telefone.$invalid]" id="telefone" type="text" name="telefone" ng-model="estabelecimentoData.telefone" required>
+                    <label for="telefone">Telefone</label>
+                  </div>
+                  <div class="input-field col s5">
+                    <input ng-class="{false:'validate', true:'invalid'}[form.cnpj.$dirty && form.cnpj.$invalid]" id="cnpj" type="text" name="cnpj" ng-model="estabelecimentoData.cnpj" required>
+                    <label for="cnpj">CNPJ</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <textarea id="descricao" name="descricao" ng-model="estabelecimentoData.descricao" class="materialize-textarea"></textarea>
+                    <label for="descricao">Descrição (Opcional)</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input class="validate" id="site" type="text" name="site" ng-model="estabelecimentoData.site">
+                    <label for="site">Site (Opcional)</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input ng-class="{false:'validate', true:'invalid'}[form.senha.$dirty && form.senha.$invalid]" id="senha" type="password" name="senha" ng-model="estabelecimentoData.senha" required>
+                    <label for="senha">Senha</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="file-field input-field col s12">
+                    <div class="btn yellow darken-2 black-text">
+                      <span>Logomarca</span>
+                      <input type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                      <input class="file-path validate" type="text" placeholder="Enviar arquivo de logomarca (Opcional)">
+                    </div>
+                  </div>
+                </div>
+                <button class="waves-effect waves-light btn yellow darken-2 black-text right">
+                  <i class="material-icons right">add_box</i><span>Adicionar</span>
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
