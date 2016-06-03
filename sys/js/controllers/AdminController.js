@@ -226,4 +226,30 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', function($scope, $
             console.log(data);
         });
     };
+
+    $scope.imgTest = function() {
+        showPreloader();
+        $http({
+            method: 'POST',
+            url: 'http://' + getServerIP() + '/remover_admin',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            transformRequest: function(obj) {
+                var str = [];
+                for (var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+            },
+            data: {
+                img: $scope.usuario.usuario
+            }
+        }).success(function(data) {
+            hidePreloader();
+            console.log(data);
+        }).error(function(data) {
+            hidePreloader();
+            console.log(data);
+        });
+    };
 }]);

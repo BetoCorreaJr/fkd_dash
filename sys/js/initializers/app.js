@@ -1,4 +1,4 @@
-var fkd = angular.module('fkdDash', ['ui.materialize', 'ui.router', 'angular.filter']);
+var fkd = angular.module('fkdDash', ['ui.materialize', 'ui.router', 'angular.filter', 'lr.upload']);
 
 fkd.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
     // UI-Router //
