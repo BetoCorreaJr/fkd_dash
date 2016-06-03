@@ -12,7 +12,7 @@
           </nav>
           <div class="card-content">
             <div class="row" ng-show="exibirConteudo">
-              <form class="col s12" name="form" ng-submit>
+              <form class="col s12" name="form" ng-submit="popupAdicionarEstabelecimento()">
                 <div class="row">
                   <div class="input-field col s8">
                     <input ng-class="{false:'validate', true:'invalid'}[form.nome.$dirty && form.nome.$invalid]" id="nome" type="text" name="nome" ng-model="estabelecimentoData.nome" required>
@@ -20,7 +20,7 @@
                   </div>
                   <div class="col s4" input-field>
                     <select ng-model="estabelecimentoData.segmento" material-select watch id="segmento" name="segmento" required>
-                      <option value="" disabled selected>Segmento</option>
+                      <option value="" selected>Segmento</option>
                       <option ng-repeat="value in segmentosList">{{value.nome}}</option>
                     </select>
                   </div>
@@ -58,7 +58,7 @@
                   </div> -->
                   <div class="col s3" input-field>
                     <select ng-model="estabelecimentoData.uf" material-select watch id="uf" name="uf" required>
-                      <option value="" disabled selected>UF</option>
+                      <option value="" selected>UF</option>
                       <option value="AC">AC - Acre</option>
                       <option value="AL">AL - Alagoas</option>
                       <option value="AP">AP - Amapá</option>
@@ -141,3 +141,27 @@
     </div>
   </div>
 </section>
+
+<!-- Modal Structure -->
+<div id="modalAdicionarEstabelecimento" class="modal">
+  <form name="form" ng-submit="estabelecimentoPost()">
+    <div class="modal-content">
+      <br>
+      <h5 class="center">Adicionar <strong>{{estabelecimentoData.nome}}</strong>?</h4>
+      <p class="center">Digite sua senha para confirmar:</p>
+      <br>
+      <div class="row">
+        <div class="input-field col s6 offset-s3">
+          <input ng-class="{false:'', true:'invalid'}[form.pwd.$dirty && form.pwd.$invalid]" id="pwd" type="password" name="pwd" ng-model="modal.pwd" required>
+          <label for="senha">Senha</label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="row">
+        <button type="submit" class="modal-action waves-effect waves-green btn-flat black-text">Confirmar</button>
+        <button type="button" class="modal-action modal-close waves-effect waves-red btn-flat black-text">Cancelar</button>
+      </div>
+    </div>
+  </form>
+</div>

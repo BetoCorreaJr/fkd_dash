@@ -65,3 +65,27 @@
     </div>
   </div>
 </section>
+
+<!-- Modal Structure -->
+<div id="modalAdicionarEmpresa" class="modal">
+  <form name="form" ng-submit="atualizaAdmin()">
+    <div class="modal-content">
+      <br>
+      <h5 class="center">Deseja realmente alterar <strong>{{adminSelect.usuario}}</strong>?</h4>
+      <p class="center">Digite sua senha para confirmar:</p>
+      <br>
+      <div class="row">
+        <div class="input-field col s6 offset-s3">
+          <input ng-class="{false:'', true:'invalid'}[form.pwd.$dirty && form.pwd.$invalid]" id="pwd" type="password" name="pwd" ng-model="updateData.pwd" required>
+          <label for="senha">Senha</label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="row">
+        <button type="submit" class="modal-action waves-effect waves-green btn-flat black-text">Confirmar</button>
+        <button type="button" class="modal-action modal-close waves-effect waves-red btn-flat black-text">Cancelar</button>
+      </div>
+    </div>
+  </form>
+</div>

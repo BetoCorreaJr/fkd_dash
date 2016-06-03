@@ -275,7 +275,101 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', function($scope, $
         });
     };
 
-    $scope.estabelecimentoPost = function() {
+    $scope.popupAdicionarEstabelecimento = function() {
+        if ($scope.estabelecimentoData.nome === "" || $scope.estabelecimentoData.nome === undefined) {
+            Materialize.toast('Você precisa inserir um nome.', 4000);
+        } else if ($scope.estabelecimentoData.segmento === "" || $scope.estabelecimentoData.segmento === undefined) {
+            Materialize.toast('Você precisa inserir um segmento.', 4000);
+        } else if ($scope.estabelecimentoData.endereco === "" || $scope.estabelecimentoData.endereco === undefined) {
+            Materialize.toast('Você precisa inserir um endereço.', 4000);
+        } else if ($scope.estabelecimentoData.numero === "" || $scope.estabelecimentoData.numero === undefined) {
+            Materialize.toast('Você precisa inserir um número.', 4000);
+        } else if ($scope.estabelecimentoData.bairro === "" || $scope.estabelecimentoData.bairro === undefined) {
+            Materialize.toast('Você precisa inserir um bairro.', 4000);
+        } else if ($scope.estabelecimentoData.cep === "" || $scope.estabelecimentoData.cep === undefined) {
+            Materialize.toast('Você precisa inserir um CEP.', 4000);
+        } else if ($scope.estabelecimentoData.cidade === "" || $scope.estabelecimentoData.cidade === undefined) {
+            Materialize.toast('Você precisa inserir uma cidade.', 4000);
+        } else if ($scope.estabelecimentoData.uf === "" || $scope.estabelecimentoData.uf === undefined) {
+            Materialize.toast('Você precisa inserir um estado.', 4000);
+        } else if ($scope.estabelecimentoData.email === "" || $scope.estabelecimentoData.email === undefined) {
+            Materialize.toast('Você precisa inserir um email.', 4000);
+        } else if ($scope.estabelecimentoData.telefone === "" || $scope.estabelecimentoData.telefone === undefined) {
+            Materialize.toast('Você precisa inserir um telefone.', 4000);
+        } else if ($scope.estabelecimentoData.cnpj === "" || $scope.estabelecimentoData.cnpj === undefined) {
+            Materialize.toast('Você precisa inserir um CNPJ.', 4000);
+        } else {
+            $('#modalAdicionarEstabelecimento').openModal();
+            $('#pwd').focus();
+        }
+    };
 
+    $scope.estabelecimentoPost = function() {
+        showPreloader();
+        var segmento = "";
+        var end = $scope.estabelecimentoData.endereco + " " + $scope.estabelecimentoData.numero + " " + $scope.estabelecimentoData.cep + " " + $scope.estabelecimentoData.cidade + " " + $scope.estabelecimentoData.uf;
+        Materialize.toast('Descobrindo coordenadas GPS.', 1500);
+        $http.get('http://maps.google.com/maps/api/geocode/json?address=' + end + '&sensor=false')
+            .success(function(mapData) {
+                if (mapData.status == "OK") {
+                    var latLng = mapData.results[0].geometry.location;
+                    Materialize.toast('Sucesso.', 1500);
+                    for (var i = 0; i < $scope.segmentosList.length; i++) {
+                        if ($scope.segmentosList[i].nome == $scope.estabelecimentoData.segmento) {
+                            segmento = $scope.segmentosList[i].id_segmento;
+                        }
+                    }
+                    console.log(segmento);
+                    Materialize.toast('Cadastrando...', 2000);
+                    $http({
+                        method: 'POST',
+                        url: 'http://' + getServerIP() + '/inserir/estabelecimento',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        transformRequest: function(obj) {
+                            var str = [];
+                            for (var p in obj)
+                                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                            return str.join("&");
+                        },
+                        data: {
+                            nome: $scope.estabelecimentoData.nome,
+                            segmento: segmento,
+                            endereco: $scope.estabelecimentoData.endereco,
+                            numero: $scope.estabelecimentoData.numero,
+                            complemento: $scope.estabelecimentoData.complemento,
+                            bairro: $scope.estabelecimentoData.bairro,
+                            cep: $scope.estabelecimentoData.cep,
+                            cidade: $scope.estabelecimentoData.cidade,
+                            uf: $scope.estabelecimentoData.uf,
+                            lat: latLng.lat,
+                            lng: latLng.lng,
+                            email: $scope.estabelecimentoData.email,
+                            telefone: $scope.estabelecimentoData.telefone,
+                            cnpj: $scope.estabelecimentoData.cnpj,
+                            senha: $scope.estabelecimentoData.senha,
+                            descricao: $scope.estabelecimentoData.descricao,
+                            site: $scope.estabelecimentoData.site,
+                            admin: $scope.usuario.usuario,
+                            pass: $scope.modal.pwd
+                        }
+                    }).success(function(data) {
+                        hidePreloader();
+                        console.log(data);
+                        $('#modalAdicionarEstabelecimento').closeModal();
+                        window.location.href = "#/administrativo/gerenciar-estabelecimento";
+                        Materialize.toast(data, 4000);
+                    }).error(function(data) {
+                        hidePreloader();
+                        $('#modalAdicionarEstabelecimento').closeModal();
+                        Materialize.toast(data, 4000);
+                        console.log(data);
+                    });
+                } else {
+                    hidePreloader();
+                    Materialize.toast('Erro no serviço de geolocalização, tente mais tarde.', 4000);
+                }
+            });
     };
 }]);

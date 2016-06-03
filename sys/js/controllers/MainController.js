@@ -110,7 +110,9 @@ fkd.controller('MainController', ['$scope', '$sce', '$http', function($scope, $s
         $http.get('http://maps.google.com/maps/api/geocode/json?address=' + string + '&sensor=false')
             .success(function(mapData) {
                 if (mapData.status == "OK") {
-                    return mapData.results[0].geometry.location;
+                    var latLng = mapData.results[0].geometry.location;
+                    console.log(latLng);
+                    return latLng;
                 } else {
                     return false;
                 }
