@@ -227,6 +227,54 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', function($scope, $
         });
     };
 
+    $scope.popupSenhaAdmin = function(data) {
+        if ($scope.adminSelect.senha === "" || $scope.adminSelect.senha === undefined) {
+            Materialize.toast('Você precisa inserir uma senha.', 4000);
+        } else if ($scope.adminSelect.confirmaSenha === "" || $scope.adminSelect.confirmaSenha === undefined) {
+            Materialize.toast('Você precisa confirmar a senha.', 4000);
+        } else {
+            $('#modalSenhaAdmin').openModal();
+            $('#pwd').focus();
+        }
+    };
+
+    $scope.alteraSenha = function(data) {
+        showPreloader();
+        $http({
+            method: 'POST',
+            url: 'http://' + getServerIP() + '/troca_senha_admin',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            transformRequest: function(obj) {
+                var str = [];
+                for (var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+            },
+            data: {
+                usuario: $scope.usuario.usuario,
+                senha: $scope.updateData.pwd,
+                id: $scope.adminSelect.id_admin,
+                senha_alterada: $scope.adminSelect.senha
+            }
+        }).success(function(data) {
+            hidePreloader();
+            console.log(data);
+            window.location.href = "#/administrativo/gerenciar-admin";
+            Materialize.toast(data, 4000);
+            $scope.updateData.pwd = "";
+            $scope.adminSelect.senha = "";
+            $scope.adminSelect.confirmaSenha = "";
+            $scope.form.pwd.$dirty = false;
+            $('#modalSenhaAdmin').closeModal();
+        }).error(function(data) {
+            hidePreloader();
+            Materialize.toast(data, 4000);
+            console.log(data);
+        });
+    };
+
     $scope.imgTest = function() {
         showPreloader();
         $http({

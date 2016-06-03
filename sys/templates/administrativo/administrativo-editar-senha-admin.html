@@ -14,7 +14,7 @@
           </nav>
           <div class="card-content">
             <div class="row">
-              <form class="col s12" name="editar" ng-submit="popupEditarSenhaAdmin()">
+              <form class="col s12" name="editar" ng-submit="popupSenhaAdmin()">
                 <div class="row">
                   <div class="input-field col s6">
                     <input ng-class="{false:'validate', true:'invalid'}[editar.senha.$dirty && editar.senha.$invalid]" id="senha" type="password" name="senha" ng-model="adminSelect.senha" maxlength="20" required>
@@ -39,7 +39,7 @@
 
 <!-- Modal Structure -->
 <div id="modalSenhaAdmin" class="modal">
-  <form name="form" ng-submit="()">
+  <form name="form" ng-submit="alteraSenha()">
     <div class="modal-content">
       <br>
       <h5 class="center">Deseja realmente alterar <strong>{{adminSelect.usuario}}</strong>?</h4>
