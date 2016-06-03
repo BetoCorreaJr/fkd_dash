@@ -105,4 +105,15 @@ fkd.controller('MainController', ['$scope', '$sce', '$http', function($scope, $s
             $("#gerenciar-empresa").addClass("active active-collapsible");
         }
     };
+
+    $scope.getCoords = function(string) {
+        $http.get('http://maps.google.com/maps/api/geocode/json?address=' + string + '&sensor=false')
+            .success(function(mapData) {
+                if (mapData.status == "OK") {
+                    return mapData.results[0].geometry.location;
+                } else {
+                    return false;
+                }
+            });
+    };
 }]);
