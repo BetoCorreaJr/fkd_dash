@@ -149,6 +149,19 @@ fkd.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
                 }
             }
         })
+        .state('administrativo-editar-estabelecimento', {
+            url: "/administrativo/editar-estabelecimento",
+            views: {
+                "menu": {
+                    templateUrl: "templates/menu/administrativo-menu.html",
+                    controller: "MenuController"
+                },
+                "view": {
+                    templateUrl: "templates/administrativo/administrativo-editar-estabelecimento.html",
+                    controller: "AdminController"
+                }
+            }
+        })
         .state('administrativo-adicionar-empresa', {
             url: "/administrativo/adicionar-empresa",
             views: {

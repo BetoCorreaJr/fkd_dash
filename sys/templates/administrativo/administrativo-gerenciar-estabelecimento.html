@@ -34,7 +34,7 @@
                     <td ng-if="!e.ativo" class="grey-text">{{e.nome}}</td>
                     <td ng-if="!e.ativo" class="grey-text">{{e.segmento}}</td>
                     <td ng-if="!e.ativo" class="grey-text">{{e.bairro}}</td>
-                    <td class="center" ng-if="e.ativo"><i tooltipped data-position="top" data-delay="150" data-tooltip="Mais informações" class="material-icons info-hover" ng-click="">info_outline</i></td>
+                    <td class="center" ng-if="e.ativo"><i tooltipped data-position="top" data-delay="150" data-tooltip="Mais informações" class="material-icons info-hover" ng-click="editarEstabelecimento(e)">info_outline</i></td>
                     <td class="center grey-text" ng-if="!e.ativo"><i tooltipped data-position="top" data-delay="150" data-tooltip="Estabelecimento Inativo" class="material-icons delete-hover" ng-click="">info</i></td>
                     <td class="center" ng-if="e.ativo"><i tooltipped data-position="top" data-delay="150" data-tooltip="Desativar" class="material-icons delete-hover" ng-click="popupAtivaEstabelecimento(e)">block</i></td>
                     <td class="center" ng-if="!e.ativo"><i tooltipped data-position="top" data-delay="150" data-tooltip="Ativar" class="material-icons activate-hover" ng-click="popupAtivaEstabelecimento(e)">done</i></td>

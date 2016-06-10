@@ -373,6 +373,12 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', function($scope, $
             });
     };
 
+    $scope.editarEstabelecimento = function(item) {
+        // Salva dados para ser carregado novamente onLoad após mudança de view
+        sessionStorage.setItem('estabelecimentoSelect', JSON.stringify(item));
+        window.location.href = "#/administrativo/editar-estabelecimento";
+    };
+
     $scope.popupAtivaEstabelecimento = function(item) {
         sessionStorage.setItem('id', item.id_estabelecimento);
         sessionStorage.setItem('ativo', item.ativo);
