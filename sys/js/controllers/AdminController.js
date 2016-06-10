@@ -58,6 +58,8 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', function($scope, $
                 .error(function(data) {
                     console.log(data);
                 });
+        } else if ($scope.view.viewState = "administrativo-editar-estabelecimento") {
+            $scope.estabelecimentoSelect = JSON.parse(sessionStorage.getItem('estabelecimentoSelect'));
         } else if ($scope.view.viewState == "administrativo-gerenciar-empresa") {
             console.log('Carregando Estabelecimentos...');
             $("#empresasLoader").removeClass("hide");
@@ -392,10 +394,11 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', function($scope, $
         var id = sessionStorage.getItem('id');
         if (sessionStorage.getItem('ativo') == "1") {
             set = 0;
+            console.log("Desativando " + id);
         } else {
             set = 1;
+            console.log("Ativando " + id);
         }
-        console.log(set + " " + id);
         showPreloader();
         $http({
             method: 'POST',
@@ -431,4 +434,4 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', function($scope, $
             console.log(data);
         });
     };
-}]);
+}]);;
