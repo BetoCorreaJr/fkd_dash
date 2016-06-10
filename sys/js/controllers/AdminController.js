@@ -48,7 +48,7 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', function($scope, $
         } else if ($scope.view.viewState == "administrativo-gerenciar-estabelecimento") {
             console.log('Carregando Estabelecimentos...');
             $("#estabelecimentosLoader").removeClass("hide");
-            var estabelecimentosUrl = 'http://' + getServerIP() + '/tabela/view_estabelecimento.json?callback=JSON_CALLBACK';
+            var estabelecimentosUrl = 'http://' + getServerIP() + '/tabela/view_estabelecimento_admin.json?callback=JSON_CALLBACK';
             $http.jsonp(estabelecimentosUrl)
                 .success(function(data) {
                     $scope.estabelecimentosList = data;
@@ -371,5 +371,58 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', function($scope, $
                     Materialize.toast('Erro no serviço de geolocalização, tente mais tarde.', 4000);
                 }
             });
+    };
+
+    $scope.popupAtivaEstabelecimento = function(item) {
+        sessionStorage.setItem('id', item.id_estabelecimento);
+        sessionStorage.setItem('ativo', item.ativo);
+        $scope.estabelecimentoData = item;
+        $('#modalAtivaEstabelecimento').openModal();
+        $('#pwd').focus();
+    };
+
+    $scope.postAtivaEstabelecimento = function() {
+        var set;
+        var id = sessionStorage.getItem('id');
+        if (sessionStorage.getItem('ativo') == "1") {
+            set = 0;
+        } else {
+            set = 1;
+        }
+        console.log(set + " " + id);
+        showPreloader();
+        $http({
+            method: 'POST',
+            url: 'http://' + getServerIP() + '/admin/ativar-estabelecimento',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            transformRequest: function(obj) {
+                var str = [];
+                for (var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+            },
+            data: {
+                admin: $scope.usuario.usuario,
+                senha: $scope.modal.pwd,
+                id: id,
+                ativo: set
+            }
+        }).success(function(data) {
+            hidePreloader();
+            console.log(data);
+            $scope.modal.pwd = "";
+            $scope.form.pwd.$dirty = false;
+            $('#modalAtivaEstabelecimento').closeModal();
+            $scope.adminOnLoad();
+            Materialize.toast(data, 4000);
+            sessionStorage.removeItem('id');
+            sessionStorage.removeItem('ativo');
+        }).error(function(data) {
+            hidePreloader();
+            Materialize.toast(data, 4000);
+            console.log(data);
+        });
     };
 }]);

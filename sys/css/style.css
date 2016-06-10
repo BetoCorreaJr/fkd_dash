@@ -50,6 +50,9 @@ i.info-hover:hover {
 i.delete-hover:hover {
     color: #ee6e73;
 }
+i.activate-hover:hover {
+    color: #26a69a;
+}
 
 /* Breadcrumb */
 

@@ -26,12 +26,18 @@
 
                 <tbody>
                   <tr ng-repeat="e in estabelecimentosList | orderBy: 'id_estabelecimento'">
-                    <td>{{e.id_estabelecimento}}</td>
-                    <td>{{e.nome}}</td>
-                    <td>{{e.segmento}}</td>
-                    <td>{{e.bairro}}</td>
-                    <td class="center"><i tooltipped data-position="top" data-delay="150" data-tooltip="Mais informações" class="material-icons info-hover" ng-click="">info_outline</i></td>
-                    <td class="center"><i tooltipped data-position="top" data-delay="150" data-tooltip="Remover" class="material-icons delete-hover" ng-click="">delete_forever</i></td>
+                    <td ng-if="e.ativo">{{e.id_estabelecimento}}</td>
+                    <td ng-if="e.ativo">{{e.nome}}</td>
+                    <td ng-if="e.ativo">{{e.segmento}}</td>
+                    <td ng-if="e.ativo">{{e.bairro}}</td>
+                    <td ng-if="!e.ativo" class="grey-text">{{e.id_estabelecimento}}</td>
+                    <td ng-if="!e.ativo" class="grey-text">{{e.nome}}</td>
+                    <td ng-if="!e.ativo" class="grey-text">{{e.segmento}}</td>
+                    <td ng-if="!e.ativo" class="grey-text">{{e.bairro}}</td>
+                    <td class="center" ng-if="e.ativo"><i tooltipped data-position="top" data-delay="150" data-tooltip="Mais informações" class="material-icons info-hover" ng-click="">info_outline</i></td>
+                    <td class="center grey-text" ng-if="!e.ativo"><i tooltipped data-position="top" data-delay="150" data-tooltip="Estabelecimento Inativo" class="material-icons delete-hover" ng-click="">info</i></td>
+                    <td class="center" ng-if="e.ativo"><i tooltipped data-position="top" data-delay="150" data-tooltip="Desativar" class="material-icons delete-hover" ng-click="popupAtivaEstabelecimento(e)">block</i></td>
+                    <td class="center" ng-if="!e.ativo"><i tooltipped data-position="top" data-delay="150" data-tooltip="Ativar" class="material-icons activate-hover" ng-click="popupAtivaEstabelecimento(e)">done</i></td>
                   </tr>
                 </tbody>
               </table>
@@ -45,3 +51,27 @@
     </div>
   </div>
 </section>
+
+<div id="modalAtivaEstabelecimento" class="modal">
+  <form name="form" ng-submit="postAtivaEstabelecimento()">
+    <div class="modal-content">
+      <br>
+      <h5 class="center" ng-if="!estabelecimentoData.ativo">Deseja ativar <strong>{{estabelecimentoData.nome}}</strong>?</h5>
+      <h5 class="center" ng-if="estabelecimentoData.ativo">Deseja desativar <strong>{{estabelecimentoData.nome}}</strong>?</h5>
+      <p class="center">Digite sua senha para confirmar:</p>
+      <br>
+      <div class="row">
+        <div class="input-field col s6 offset-s3">
+          <input ng-class="{false:'', true:'invalid'}[form.pwd.$dirty && form.pwd.$invalid]" id="pwd" type="password" name="pwd" ng-model="modal.pwd" required>
+          <label for="senha">Senha</label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="row">
+        <button type="submit" class="modal-action waves-effect waves-green btn-flat black-text">Confirmar</button>
+        <button type="button" class="modal-action modal-close waves-effect waves-red btn-flat black-text">Cancelar</button>
+      </div>
+    </div>
+  </form>
+</div>
