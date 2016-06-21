@@ -1,0 +1,30 @@
+<section id="content" ng-init="setState('administrativo-menu', 'administrativo-editar-estabelecimento'); onLoad(); adminOnLoad()">
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <div class="card">
+          <nav class="yellow darken-2">
+            <div class="nav-wrapper">
+              <div class="col s12">
+                <a class="breadcrumb black-text" ui-sref="administrativo-gerenciar-estabelecimento"><span class="breadcrumb-hover">Gerenciar Estabelecimentos</span></a>
+                <a class="breadcrumb black-text">Informações do Estabelecimentos</a>
+              </div>
+            </div>
+          </nav>
+          <div class="card-content">
+            <div class="row">
+              <div class="card col s6">
+                <div class="card-content">
+                  {{estabelecimentoSelect.nome}}<br>
+                  {{estabelecimentoSelect.segmento}}<br>
+                  <label for="input_starttime">De</label>
+                  <input id="input_starttime" input-clock data-twelvehour="false" data-autoclose="true" data-darktheme="true" data-donetext="Pronto" type="text" value="20:00">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
