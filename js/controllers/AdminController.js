@@ -1,4 +1,4 @@
-fkd.controller('AdminController', ['$scope', '$sce', '$http', function($scope, $sce, $http) {
+fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function($scope, $sce, $http, NgMap) {
     $scope.adminData = {
         nome: "",
         sobrenome: "",
@@ -435,4 +435,47 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', function($scope, $
             console.log(data);
         });
     };
+
+    $scope.estabModal = function(type) {
+        console.log("estabModal");
+        switch (type) {
+            case "editar":
+                console.log("editar");
+                showPreloader();
+                $http.jsonp('http://' + getServerIP() + '/tabela/segmento.json?callback=JSON_CALLBACK')
+                    .success(function(data) {
+                        $scope.segmentosList = data;
+                        console.log('...Carregado');
+                        hidePreloader();
+                        $scope.estabelecimentoEdit = JSON.parse(sessionStorage.getItem('estabelecimentoSelect'));
+                        $scope.exibirConteudo = true;
+                        $('#modalEditarEstabelecimento').openModal();
+                    })
+                    .error(function(data) {
+                        console.log(data);
+                    });
+                break;
+            case "horarios":
+                console.log("horarios");
+                break;
+            case "logo":
+                console.log("logo");
+                break;
+            case "senha":
+                console.log("senha");
+                break;
+            case "confirmaSenha":
+                console.log("confirmaSenha");
+                $('#modalConfirmaSenha').openModal();
+                break;
+            default:
+                break;
+        }
+    };
+
+    NgMap.getMap().then(function(map) {
+        console.log(map.getCenter());
+        console.log('markers', map.markers);
+        console.log('shapes', map.shapes);
+    });
 }]);

@@ -107,6 +107,41 @@
                   </table>
                 </div>
               </div>
+              <div class="col s4 vcenter">
+                <div class="col s12 center-align">
+                  <img ng-src="{{estabelecimentoSelect.logo_path}}" style="height:200px; margin-bottom:10px">
+                </div>
+                <div map-lazy-load="https://maps.google.com/maps/api/js" class="col s12">
+                  <ng-map center="[{{estabelecimentoSelect.lat}},{{estabelecimentoSelect.lng}}]" zoom="17" disable-default-u-i="true" style="height:350px">
+                    <marker position="[{{estabelecimentoSelect.lat}}, {{estabelecimentoSelect.lng}}]" title="{{estabelecimentoSelect.nome}}"animation="Animation.DROP"></marker>
+                  </ng-map>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <table class="highlight">
+                  <tr>
+                    <th style="vertical-align: text-top;">
+                      Descrição:
+                    </th>
+                    <td>
+                      <span style="white-space:pre-wrap;">{{estabelecimentoSelect.descricao}}</span>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="fixed-action-btn horizontal" style="bottom: 35px; right: 40px;">
+              <a class="btn-floating btn-large amber">
+                <i class="large material-icons black-text">add</i>
+              </a>
+              <ul>
+                <li><a class="btn-floating black"><i tooltipped data-position="top" data-delay="150" data-tooltip="Editar Estabelecimento" class="material-icons amber-text" ng-click="estabModal('editar')">mode_edit</i></a></li>
+                <li><a class="btn-floating black"><i tooltipped data-position="top" data-delay="150" data-tooltip="Ajustar Horários" class="material-icons amber-text">access_time</i></a></li>
+                <li><a class="btn-floating black"><i tooltipped data-position="top" data-delay="150" data-tooltip="Enviar Logo" class="material-icons amber-text">publish</i></a></li>
+                <li><a class="btn-floating black"><i tooltipped data-position="top" data-delay="150" data-tooltip="Trocar Senha" class="material-icons amber-text">lock</i></a></li>
+              </ul>
             </div>
           </div>
         </div>
@@ -114,3 +149,156 @@
     </div>
   </div>
 </section>
+
+<!-- Editar Estabelecimento -->
+<div id="modalEditarEstabelecimento" class="modal">
+  <form name="form" ng-submit="estabModal('confirmaSenha')">
+    <div class="modal-content">
+      <div class="row" ng-show="exibirConteudo">
+        <div class="card">
+          <div class="card-content" style="height:700px">
+            <div class="card-title center-align">Editar <strong>{{estabelecimentoSelect.nome}}</strong></div>
+            <div class="divider"></div>
+            <div class="col s12">
+              <div class="row">
+                <div class="input-field col s8">
+                  <input ng-class="{false:'validate', true:'invalid'}[form.nome.$dirty && form.nome.$invalid]" id="nome" type="text" name="nome" ng-model="estabelecimentoEdit.nome" required>
+                  <label for="nome">Nome</label>
+                </div>
+                <div class="col s4" input-field>
+                  <select ng-model="estabelecimentoEdit.segmento" material-select watch id="segmento" name="segmento" required>
+                    <option value="" selected>Segmento</option>
+                    <option ng-repeat="value in segmentosList">{{value.nome}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                  <input ng-class="{false:'validate', true:'invalid'}[form.endereco.$dirty && form.endereco.$invalid]" id="endereco" type="text" name="endereco" ng-model="estabelecimentoEdit.endereco" required>
+                  <label for="endereco">Endereço</label>
+                </div>
+                <div class="input-field col s2">
+                  <input ng-class="{false:'validate', true:'invalid'}[form.numero.$dirty && form.numero.$invalid]" id="numero" type="text" name="numero" ng-model="estabelecimentoEdit.numero" required>
+                  <label for="numero">Número</label>
+                </div>
+                <div class="input-field col s4">
+                  <input ng-class="{false:'validate', true:'invalid'}[form.complemento.$dirty && form.complemento.$invalid]" id="complemento" type="text" name="complemento" ng-model="estabelecimentoEdit.complemento" required>
+                  <label for="complemento">Complemento (Opcional)</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s3">
+                  <input ng-class="{false:'validate', true:'invalid'}[form.bairro.$dirty && form.bairro.$invalid]" id="bairro" type="text" name="bairro" ng-model="estabelecimentoEdit.bairro" required>
+                  <label for="bairro">Bairro</label>
+                </div>
+                <div class="input-field col s2">
+                  <input ng-class="{false:'validate', true:'invalid'}[form.cep.$dirty && form.cep.$invalid]" id="cep" type="text" name="cep" ng-model="estabelecimentoEdit.cep" required>
+                  <label for="cep">CEP</label>
+                </div>
+                <div class="input-field col s4">
+                  <input ng-class="{false:'validate', true:'invalid'}[form.cidade.$dirty && form.cidade.$invalid]" id="cidade" type="text" name="cidade" ng-model="estabelecimentoEdit.cidade" required>
+                  <label for="cidade">Cidade</label>
+                </div>
+                <!-- <div class="input-field col s2">
+                  <input ng-class="{false:'validate', true:'invalid'}[form.uf.$dirty && form.uf.$invalid]" id="uf" type="text" name="uf" ng-model="estabelecimentoEdit.uf" required>
+                  <label for="uf">UF</label>
+                </div> -->
+                <div class="col s3" input-field>
+                  <select ng-model="estabelecimentoEdit.uf" material-select watch id="uf" name="uf" required>
+                    <option value="" selected>UF</option>
+                    <option value="AC">AC - Acre</option>
+                    <option value="AL">AL - Alagoas</option>
+                    <option value="AP">AP - Amapá</option>
+                    <option value="AM">AM - Amazonas</option>
+                    <option value="BA">BA - Bahia</option>
+                    <option value="CE">CE - Ceará</option>
+                    <option value="DF">DF - Distrito Federal</option>
+                    <option value="ES">ES - Espirito Santo</option>
+                    <option value="GO">GO - Goiás</option>
+                    <option value="MA">MA - Maranhão</option>
+                    <option value="MT">MT - Mato Grosso</option>
+                    <option value="MS">MS - Mato Grosso do Sul</option>
+                    <option value="MG">MG - Minas Gerais</option>
+                    <option value="PA">PA - Pará</option>
+                    <option value="PB">PB - Paraíba</option>
+                    <option value="PR">PR - Paraná</option>
+                    <option value="PE">PE - Pernambuco</option>
+                    <option value="PI">PI - Piauí</option>
+                    <option value="RJ">RJ - Rio de Janeiro</option>
+                    <option value="RN">RN - Rio Grande do Norte</option>
+                    <option value="RS">RS - Rio Grande do Sul</option>
+                    <option value="RO">RO - Rondônia</option>
+                    <option value="RR">RR - Roraima</option>
+                    <option value="SC">SC - Santa Catarina</option>
+                    <option value="SP">SP - São Paulo</option>
+                    <option value="SE">SE - Sergipe</option>
+                    <option value="TO">TO - Tocantins</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s4">
+                  <input ng-class="{false:'validate', true:'invalid'}[form.email.$dirty && form.email.$invalid]" id="email" type="email" name="email" ng-model="estabelecimentoEdit.email" required>
+                  <label for="email">Email</label>
+                </div>
+                <div class="input-field col s3">
+                  <input ng-class="{false:'validate', true:'invalid'}[form.telefone.$dirty && form.telefone.$invalid]" id="telefone" type="text" name="telefone" ng-model="estabelecimentoEdit.telefone" required>
+                  <label for="telefone">Telefone</label>
+                </div>
+                <div class="input-field col s5">
+                  <input ng-class="{false:'validate', true:'invalid'}[form.cnpj.$dirty && form.cnpj.$invalid]" id="cnpj" type="text" name="cnpj" ng-model="estabelecimentoEdit.cnpj" required>
+                  <label for="cnpj">CNPJ</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <textarea id="descricao" name="descricao" ng-model="estabelecimentoEdit.descricao" class="materialize-textarea"></textarea>
+                  <label for="descricao">Descrição (Opcional)</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input class="validate" id="site" type="text" name="site" ng-model="estabelecimentoEdit.site">
+                  <label for="site">Site (Opcional)</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="modal-footer" style="margin-top: -30px; margin-bottom: -30px">
+      <div class="row">
+        <button type="submit" class="modal-action waves-effect waves-green btn-flat black-text">Confirmar</button>
+        <button type="button" class="modal-action modal-close waves-effect waves-red btn-flat black-text">Cancelar</button>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>
+<!-- Editar Estabelecimento -->
+
+<!-- Senha -->
+<!-- Modal Structure -->
+<div id="modalConfirmaSenha" class="modal">
+  <form name="form" ng-submit="">
+    <div class="modal-content">
+      <br>
+      <h5 class="center">Deseja realmente alterar <strong>{{estabelecimentoSelect.nome}}</strong>?</h4>
+      <p class="center">Digite sua senha para confirmar:</p>
+      <br>
+      <div class="row">
+        <div class="input-field col s6 offset-s3">
+          <input ng-class="{false:'', true:'invalid'}[form.pwd.$dirty && form.pwd.$invalid]" id="pwd" type="password" name="pwd" ng-model="updateData.pwd" required>
+          <label for="senha">Senha</label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="row">
+        <button type="submit" class="modal-action waves-effect waves-green btn-flat black-text">Confirmar</button>
+        <button type="button" class="modal-action modal-close waves-effect waves-red btn-flat black-text">Cancelar</button>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- Senha -->
