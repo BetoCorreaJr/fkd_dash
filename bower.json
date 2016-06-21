@@ -29,6 +29,7 @@
     "angular-filter": "^0.5.8",
     "angular-materialize": "^0.1.9",
     "angular-upload": "^1.0.12",
-    "materialize-clockpicker": "*"
+    "materialize-clockpicker": "*",
+    "angular-maps": "^0.0.6"
   }
 }
