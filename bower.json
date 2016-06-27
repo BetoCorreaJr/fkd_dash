@@ -30,7 +30,6 @@
     "angular-materialize": "^0.1.9",
     "angular-upload": "^1.0.12",
     "materialize-clockpicker": "*",
-    "angular-maps": "^0.0.6",
     "ngmap": "^1.17.3"
   }
 }
