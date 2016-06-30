@@ -113,7 +113,7 @@
                 </div>
                 <div map-lazy-load="https://maps.google.com/maps/api/js" class="col s12">
                   <ng-map center="[{{estabelecimentoSelect.lat}},{{estabelecimentoSelect.lng}}]" zoom="17" disable-default-u-i="true" style="height:350px">
-                    <marker position="[{{estabelecimentoSelect.lat}}, {{estabelecimentoSelect.lng}}]" title="{{estabelecimentoSelect.nome}}"animation="Animation.DROP"></marker>
+                    <marker position="[{{estabelecimentoSelect.lat}}, {{estabelecimentoSelect.lng}}]" title="{{estabelecimentoSelect.nome}}" animation="Animation.DROP"></marker>
                   </ng-map>
                 </div>
               </div>
@@ -265,14 +265,14 @@
             </div>
           </div>
         </div>
-    </div>
-    <div class="modal-footer" style="margin-top: -30px; margin-bottom: -30px">
-      <div class="row">
-        <button type="submit" class="modal-action waves-effect waves-green btn-flat black-text">Confirmar</button>
-        <button type="button" class="modal-action modal-close waves-effect waves-red btn-flat black-text">Cancelar</button>
+      </div>
+      <div class="modal-footer" style="margin-top: -30px; margin-bottom: -30px">
+        <div class="row">
+          <button type="submit" class="modal-action waves-effect waves-green btn-flat black-text">Confirmar</button>
+          <button type="button" class="modal-action modal-close waves-effect waves-red btn-flat black-text">Cancelar</button>
+        </div>
       </div>
     </div>
-  </div>
   </form>
 </div>
 <!-- Editar Estabelecimento -->
@@ -280,7 +280,7 @@
 <!-- Senha -->
 <!-- Modal Structure -->
 <div id="modalConfirmaSenha" class="modal">
-  <form name="form" ng-submit="">
+  <form name="form" ng-submit="confirmaSenhaEstabelecimento()">
     <div class="modal-content">
       <br>
       <h5 class="center">Deseja realmente alterar <strong>{{estabelecimentoSelect.nome}}</strong>?</h4>

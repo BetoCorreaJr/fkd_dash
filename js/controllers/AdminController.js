@@ -1,4 +1,4 @@
-fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function ($scope, $sce, $http, NgMap) {
+fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function($scope, $sce, $http, NgMap) {
     $scope.adminData = {
         nome: "",
         sobrenome: "",
@@ -7,7 +7,7 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
     };
 
     // Carrega Dados da API
-    $scope.adminOnLoad = function () {
+    $scope.adminOnLoad = function() {
         console.log('adminOnLoad');
 
         // Pode ser usado caso precise esconder conteúdo enquanto dados são carregados antes de exibí-lo
@@ -19,12 +19,12 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
             $("#adminLoader").removeClass("hide");
             var adminUrl = 'http://' + getServerIP() + '/tabela/view_admin.json?callback=JSON_CALLBACK';
             $http.jsonp(adminUrl)
-                .success(function (data) {
+                .success(function(data) {
                     $scope.adminList = data;
                     console.log('...Carregado');
                     $("#adminLoader").addClass("hide");
                 })
-                .error(function (data) {
+                .error(function(data) {
                     console.log(data);
                 });
         } else if ($scope.view.viewState == "administrativo-editar-admin") {
@@ -36,13 +36,13 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
             showPreloader();
 
             $http.jsonp('http://' + getServerIP() + '/tabela/segmento.json?callback=JSON_CALLBACK')
-                .success(function (data) {
+                .success(function(data) {
                     $scope.segmentosList = data;
                     console.log('...Carregado');
                     hidePreloader();
                     $scope.exibirConteudo = true;
                 })
-                .error(function (data) {
+                .error(function(data) {
                     console.log(data);
                 });
         } else if ($scope.view.viewState == "administrativo-gerenciar-estabelecimento") {
@@ -50,12 +50,12 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
             $("#estabelecimentosLoader").removeClass("hide");
             var estabelecimentosUrl = 'http://' + getServerIP() + '/tabela/view_estabelecimento_admin.json?callback=JSON_CALLBACK';
             $http.jsonp(estabelecimentosUrl)
-                .success(function (data) {
+                .success(function(data) {
                     $scope.estabelecimentosList = data;
                     console.log('...Carregado');
                     $("#estabelecimentosLoader").addClass("hide");
                 })
-                .error(function (data) {
+                .error(function(data) {
                     console.log(data);
                 });
         } else if ($scope.view.viewState == "administrativo-editar-estabelecimento") {
@@ -66,19 +66,19 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
             $("#empresasLoader").removeClass("hide");
             var empresasUrl = 'http://' + getServerIP() + '/tabela/view_empresa.json?callback=JSON_CALLBACK';
             $http.jsonp(empresasUrl)
-                .success(function (data) {
+                .success(function(data) {
                     console.log(data);
                     $scope.empresasList = data;
                     console.log('...Carregado');
                     $("#empresasLoader").addClass("hide");
                 })
-                .error(function (data) {
+                .error(function(data) {
                     console.log(data);
                 });
         }
     };
 
-    $scope.adminPost = function () {
+    $scope.adminPost = function() {
         console.log('adminPost');
         if ($scope.adminData.nome === "" || $scope.adminData.nome === undefined) {
             Materialize.toast('Você precisa inserir um nome.', 4000);
@@ -97,7 +97,7 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                transformRequest: function (obj) {
+                transformRequest: function(obj) {
                     var str = [];
                     for (var p in obj)
                         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
@@ -109,7 +109,7 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
                     usuario: $scope.adminData.usuario,
                     senha: $scope.adminData.senha
                 }
-            }).success(function (data) {
+            }).success(function(data) {
                 hidePreloader();
                 console.log(data);
                 $scope.adminData = {};
@@ -125,7 +125,7 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
                     showConfirmButton: false
                 });
                 // Materialize.toast(data, 4000); ????
-            }).error(function (data) {
+            }).error(function(data) {
                 hidePreloader();
                 console.log(data);
                 swal({
@@ -139,18 +139,18 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
         }
     };
 
-    $scope.editarAdmin = function (data) {
+    $scope.editarAdmin = function(data) {
         // Salva dados para ser carregado novamente onLoad após mudança de view
         sessionStorage.setItem('adminSelect', JSON.stringify(data));
         window.location.href = "#/administrativo/editar-admin";
     };
 
-    $scope.popupEditarAdmin = function () {
+    $scope.popupEditarAdmin = function() {
         $('#modalEditarAdmin').openModal();
         $('#pwd').focus();
     };
 
-    $scope.atualizaAdmin = function () {
+    $scope.atualizaAdmin = function() {
         showPreloader();
 
         $http({
@@ -159,7 +159,7 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            transformRequest: function (obj) {
+            transformRequest: function(obj) {
                 var str = [];
                 for (var p in obj)
                     str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
@@ -173,7 +173,7 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
                 sobrenome: $scope.adminSelect.sobrenome,
                 usuario_alterado: $scope.adminSelect.usuario
             }
-        }).success(function (data) {
+        }).success(function(data) {
             hidePreloader();
             Materialize.toast(data, 4000);
             $scope.updateData.pwd = "";
@@ -181,7 +181,7 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
             $('#modalEditarAdmin').closeModal();
             window.location.href = "#/administrativo/gerenciar-admin";
             $scope.adminOnLoad();
-        }).error(function (data) {
+        }).error(function(data) {
             hidePreloader();
             $scope.updateData.pwd = "";
             Materialize.toast('Senha errada.', 4000);
@@ -189,13 +189,13 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
         });
     };
 
-    $scope.popupRemoveAdmin = function (data) {
+    $scope.popupRemoveAdmin = function(data) {
         $scope.adminSelect = data;
         $('#modalRemoveAdmin').openModal();
         $('#pwd').focus();
     };
 
-    $scope.removeAdmin = function () {
+    $scope.removeAdmin = function() {
         showPreloader();
 
         $http({
@@ -204,7 +204,7 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            transformRequest: function (obj) {
+            transformRequest: function(obj) {
                 var str = [];
                 for (var p in obj)
                     str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
@@ -215,14 +215,14 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
                 senha: $scope.deleteData.pwd,
                 id: $scope.adminSelect.id_admin
             }
-        }).success(function (data) {
+        }).success(function(data) {
             hidePreloader();
             Materialize.toast(data, 4000);
             $scope.deleteData.pwd = "";
             $scope.form.pwd.$dirty = false;
             $('#modalRemoveAdmin').closeModal();
             $scope.adminOnLoad();
-        }).error(function (data) {
+        }).error(function(data) {
             hidePreloader();
             $scope.deleteData.pwd = "";
             Materialize.toast('Senha errada.', 4000);
@@ -230,7 +230,7 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
         });
     };
 
-    $scope.popupSenhaAdmin = function () {
+    $scope.popupSenhaAdmin = function() {
         if ($scope.adminSelect.senha === "" || $scope.adminSelect.senha === undefined) {
             Materialize.toast('Você precisa inserir uma senha.', 4000);
         } else if ($scope.adminSelect.confirmaSenha === "" || $scope.adminSelect.confirmaSenha === undefined) {
@@ -241,7 +241,7 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
         }
     };
 
-    $scope.alteraSenha = function () {
+    $scope.alteraSenha = function() {
         showPreloader();
         $http({
             method: 'POST',
@@ -249,7 +249,7 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            transformRequest: function (obj) {
+            transformRequest: function(obj) {
                 var str = [];
                 for (var p in obj)
                     str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
@@ -261,7 +261,7 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
                 id: $scope.adminSelect.id_admin,
                 senha_alterada: $scope.adminSelect.senha
             }
-        }).success(function (data) {
+        }).success(function(data) {
             hidePreloader();
             console.log(data);
             window.location.href = "#/administrativo/gerenciar-admin";
@@ -271,14 +271,14 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
             $scope.adminSelect.confirmaSenha = "";
             $scope.form.pwd.$dirty = false;
             $('#modalSenhaAdmin').closeModal();
-        }).error(function (data) {
+        }).error(function(data) {
             hidePreloader();
             Materialize.toast(data, 4000);
             console.log(data);
         });
     };
 
-    $scope.popupAdicionarEstabelecimento = function () {
+    $scope.popupAdicionarEstabelecimento = function() {
         if ($scope.estabelecimentoData.nome === "" || $scope.estabelecimentoData.nome === undefined) {
             Materialize.toast('Você precisa inserir um nome.', 4000);
         } else if ($scope.estabelecimentoData.segmento === "" || $scope.estabelecimentoData.segmento === undefined) {
@@ -307,13 +307,13 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
         }
     };
 
-    $scope.estabelecimentoPost = function () {
+    $scope.estabelecimentoPost = function() {
         showPreloader();
         var segmento = "";
         var end = $scope.estabelecimentoData.endereco + " " + $scope.estabelecimentoData.numero + " " + $scope.estabelecimentoData.cep + " " + $scope.estabelecimentoData.cidade + " " + $scope.estabelecimentoData.uf;
         Materialize.toast('Descobrindo coordenadas GPS.', 1500);
         $http.get('http://maps.google.com/maps/api/geocode/json?address=' + end + '&sensor=false')
-            .success(function (mapData) {
+            .success(function(mapData) {
                 if (mapData.status == "OK") {
                     var latLng = mapData.results[0].geometry.location;
                     Materialize.toast('Sucesso.', 1500);
@@ -330,7 +330,7 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'
                         },
-                        transformRequest: function (obj) {
+                        transformRequest: function(obj) {
                             var str = [];
                             for (var p in obj)
                                 str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
@@ -357,13 +357,13 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
                             admin: $scope.usuario.usuario,
                             pass: $scope.modal.pwd
                         }
-                    }).success(function (data) {
+                    }).success(function(data) {
                         hidePreloader();
                         console.log(data);
                         $('#modalAdicionarEstabelecimento').closeModal();
                         window.location.href = "#/administrativo/gerenciar-estabelecimento";
                         Materialize.toast(data, 4000);
-                    }).error(function (data) {
+                    }).error(function(data) {
                         hidePreloader();
                         $('#modalAdicionarEstabelecimento').closeModal();
                         Materialize.toast(data, 4000);
@@ -376,13 +376,13 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
             });
     };
 
-    $scope.editarEstabelecimento = function (item) {
+    $scope.editarEstabelecimento = function(item) {
         // Salva dados para ser carregado novamente onLoad após mudança de view
         sessionStorage.setItem('estabelecimentoSelect', JSON.stringify(item));
         window.location.href = "#/administrativo/editar-estabelecimento";
     };
 
-    $scope.popupAtivaEstabelecimento = function (item) {
+    $scope.popupAtivaEstabelecimento = function(item) {
         sessionStorage.setItem('id', item.id_estabelecimento);
         sessionStorage.setItem('ativo', item.ativo);
         $scope.estabelecimentoData = item;
@@ -390,7 +390,7 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
         $('#pwd').focus();
     };
 
-    $scope.postAtivaEstabelecimento = function () {
+    $scope.postAtivaEstabelecimento = function() {
         var set;
         var id = sessionStorage.getItem('id');
         if (sessionStorage.getItem('ativo') == "1") {
@@ -407,7 +407,7 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            transformRequest: function (obj) {
+            transformRequest: function(obj) {
                 var str = [];
                 for (var p in obj)
                     str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
@@ -419,7 +419,7 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
                 id: id,
                 ativo: set
             }
-        }).success(function (data) {
+        }).success(function(data) {
             hidePreloader();
             console.log(data);
             $scope.modal.pwd = "";
@@ -429,22 +429,23 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
             Materialize.toast(data, 4000);
             sessionStorage.removeItem('id');
             sessionStorage.removeItem('ativo');
-        }).error(function (data) {
+        }).error(function(data) {
             hidePreloader();
             Materialize.toast(data, 4000);
             console.log(data);
         });
     };
 
-    $scope.estabModal = function (type) {
+    $scope.estabModal = function(type) {
         console.log("estabModal");
         sessionStorage.setItem('estabModal', type);
         switch (type) {
             case "editar":
+			sessionStorage.setItem('confModal', type);
                 console.log("editar");
                 showPreloader();
                 $http.jsonp('http://' + getServerIP() + '/tabela/segmento.json?callback=JSON_CALLBACK')
-                    .success(function (data) {
+                    .success(function(data) {
                         $scope.segmentosList = data;
                         console.log('...Carregado');
                         hidePreloader();
@@ -452,17 +453,20 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
                         $scope.exibirConteudo = true;
                         $('#modalEditarEstabelecimento').openModal();
                     })
-                    .error(function (data) {
+                    .error(function(data) {
                         console.log(data);
                     });
                 break;
             case "horarios":
+			sessionStorage.setItem('confModal', type);
                 console.log("horarios");
                 break;
             case "logo":
+			sessionStorage.setItem('confModal', type);
                 console.log("logo");
                 break;
             case "senha":
+			sessionStorage.setItem('confModal', type);
                 console.log("senha");
                 break;
             case "confirmaSenha":
@@ -474,22 +478,25 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
         }
     };
 
-    $scope.confirmaSenhaEstabelecimento = function () {
-        var type = sessionStorage.getItem('estabModal');
-        var id = JSON.parse(sessionStorage.getItem('estabelecimentoSelect'));
+    $scope.confirmaSenhaEstabelecimento = function() {
+		console.log('confirmaSenha');
+        var type = sessionStorage.getItem('confModal');
+		console.log('Type = ' + type);
+		var id = JSON.parse(sessionStorage.getItem('estabelecimentoSelect'));
         id = id.estabelecimento_id;
         switch (type) {
             case "editar":
+                showPreloader();
                 var segmento = "";
-                var end = $scope.estabelecimentoData.endereco + " " + $scope.estabelecimentoData.numero + " " + $scope.estabelecimentoData.cep + " " + $scope.estabelecimentoData.cidade + " " + $scope.estabelecimentoData.uf;
+                var end = $scope.estabelecimentoEdit.endereco + " " + $scope.estabelecimentoEdit.numero + " " + $scope.estabelecimentoEdit.cep + " " + $scope.estabelecimentoEdit.cidade + " " + $scope.estabelecimentoEdit.uf;
                 Materialize.toast('Recalculando coordenadas GPS.', 1500);
                 $http.get('http://maps.google.com/maps/api/geocode/json?address=' + end + '&sensor=false')
-                    .success(function (mapData) {
+                    .success(function(mapData) {
                         if (mapData.status == "OK") {
                             var latLng = mapData.results[0].geometry.location;
                             Materialize.toast('Sucesso.', 1500);
                             for (var i = 0; i < $scope.segmentosList.length; i++) {
-                                if ($scope.segmentosList[i].nome == $scope.estabelecimentoData.segmento) {
+                                if ($scope.segmentosList[i].nome == $scope.estabelecimentoEdit.segmento) {
                                     segmento = $scope.segmentosList[i].id_segmento;
                                 }
                             }
@@ -497,46 +504,48 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
                             Materialize.toast('Alterando...', 2000);
                             $http({
                                 method: 'POST',
-                                url: 'http://' + getServerIP() + '/inserir/estabelecimento',
+                                url: 'http://' + 'localhost:4567' + '/admin/atualizar-dados-estabelecimento',
                                 headers: {
                                     'Content-Type': 'application/x-www-form-urlencoded'
                                 },
-                                transformRequest: function (obj) {
+                                transformRequest: function(obj) {
                                     var str = [];
                                     for (var p in obj)
                                         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
                                     return str.join("&");
                                 },
                                 data: {
-                                    nome: $scope.estabelecimentoData.nome,
+                                    id: id,
+                                    nome: $scope.estabelecimentoEdit.nome,
                                     segmento: segmento,
-                                    endereco: $scope.estabelecimentoData.endereco,
-                                    numero: $scope.estabelecimentoData.numero,
-                                    complemento: $scope.estabelecimentoData.complemento,
-                                    bairro: $scope.estabelecimentoData.bairro,
-                                    cep: $scope.estabelecimentoData.cep,
-                                    cidade: $scope.estabelecimentoData.cidade,
-                                    uf: $scope.estabelecimentoData.uf,
+                                    endereco: $scope.estabelecimentoEdit.endereco,
+                                    numero: $scope.estabelecimentoEdit.numero,
+                                    complemento: $scope.estabelecimentoEdit.complemento,
+                                    bairro: $scope.estabelecimentoEdit.bairro,
+                                    cep: $scope.estabelecimentoEdit.cep,
+                                    cidade: $scope.estabelecimentoEdit.cidade,
+                                    uf: $scope.estabelecimentoEdit.uf,
                                     lat: latLng.lat,
                                     lng: latLng.lng,
-                                    email: $scope.estabelecimentoData.email,
-                                    telefone: $scope.estabelecimentoData.telefone,
-                                    cnpj: $scope.estabelecimentoData.cnpj,
-                                    senha: $scope.estabelecimentoData.senha,
-                                    descricao: $scope.estabelecimentoData.descricao,
-                                    site: $scope.estabelecimentoData.site,
+                                    email: $scope.estabelecimentoEdit.email,
+                                    telefone: $scope.estabelecimentoEdit.telefone,
+                                    cnpj: $scope.estabelecimentoEdit.cnpj,
+                                    descricao: $scope.estabelecimentoEdit.descricao,
+                                    site: $scope.estabelecimentoEdit.site,
                                     admin: $scope.usuario.usuario,
-                                    pass: $scope.modal.pwd
+                                    senha: $scope.updateData.pwd
                                 }
-                            }).success(function (data) {
+                            }).success(function(data) {
                                 hidePreloader();
                                 console.log(data);
-                                $('#modalAdicionarEstabelecimento').closeModal();
+                                $('#modalEditarEstabelecimento').closeModal();
                                 window.location.href = "#/administrativo/gerenciar-estabelecimento";
+                                $('#modalConfirmaSenha').closeModal();
                                 Materialize.toast(data, 4000);
-                            }).error(function (data) {
+                            }).error(function(data) {
                                 hidePreloader();
-                                $('#modalAdicionarEstabelecimento').closeModal();
+                                $('#modalEditarEstabelecimento').closeModal();
+                                $('#modalConfirmaSenha').closeModal();
                                 Materialize.toast(data, 4000);
                                 console.log(data);
                             });
@@ -551,7 +560,7 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function 
         }
     };
 
-    NgMap.getMap().then(function (map) {
+    NgMap.getMap().then(function(map) {
         console.log(map.getCenter());
         console.log('markers', map.markers);
         console.log('shapes', map.shapes);
