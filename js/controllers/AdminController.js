@@ -482,8 +482,6 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function(
 		console.log('confirmaSenha');
         var type = sessionStorage.getItem('confModal');
 		console.log('Type = ' + type);
-		var id = JSON.parse(sessionStorage.getItem('estabelecimentoSelect'));
-        id = id.estabelecimento_id;
         switch (type) {
             case "editar":
                 showPreloader();
@@ -504,7 +502,7 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function(
                             Materialize.toast('Alterando...', 2000);
                             $http({
                                 method: 'POST',
-                                url: 'http://' + 'localhost:4567' + '/admin/atualizar-dados-estabelecimento',
+                                url: 'http://' + getServerIP() + '/admin/atualizar-dados-estabelecimento',
                                 headers: {
                                     'Content-Type': 'application/x-www-form-urlencoded'
                                 },
@@ -515,7 +513,7 @@ fkd.controller('AdminController', ['$scope', '$sce', '$http', 'NgMap', function(
                                     return str.join("&");
                                 },
                                 data: {
-                                    id: id,
+                                    id: $scope.estabelecimentoEdit.id_estabelecimento,
                                     nome: $scope.estabelecimentoEdit.nome,
                                     segmento: segmento,
                                     endereco: $scope.estabelecimentoEdit.endereco,
