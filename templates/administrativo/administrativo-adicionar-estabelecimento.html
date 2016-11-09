@@ -45,7 +45,7 @@
                     <label for="bairro">Bairro</label>
                   </div>
                   <div class="input-field col s2">
-                    <input ng-class="{false:'validate', true:'invalid'}[form.cep.$dirty && form.cep.$invalid]" id="cep" type="text" name="cep" ng-model="estabelecimentoData.cep" required>
+                    <input ng-class="{false:'validate', true:'invalid'}[form.cep.$dirty && form.cep.$invalid]" id="cep" type="text" name="cep" ng-model="estabelecimentoData.cep" required ui-br-cep-mask>
                     <label for="cep">CEP</label>
                   </div>
                   <div class="input-field col s4">
@@ -95,11 +95,11 @@
                     <label for="email">Email</label>
                   </div>
                   <div class="input-field col s3">
-                    <input ng-class="{false:'validate', true:'invalid'}[form.telefone.$dirty && form.telefone.$invalid]" id="telefone" type="text" name="telefone" ng-model="estabelecimentoData.telefone" required>
+                    <input ng-class="{false:'validate', true:'invalid'}[form.telefone.$dirty && form.telefone.$invalid]" id="telefone" type="text" name="telefone" ng-model="estabelecimentoData.telefone" required ui-br-phone-number>
                     <label for="telefone">Telefone</label>
                   </div>
                   <div class="input-field col s5">
-                    <input ng-class="{false:'validate', true:'invalid'}[form.cnpj.$dirty && form.cnpj.$invalid]" id="cnpj" type="text" name="cnpj" ng-model="estabelecimentoData.cnpj" required>
+                    <input ng-class="{false:'validate', true:'invalid'}[form.cnpj.$dirty && form.cnpj.$invalid]" id="cnpj" type="text" name="cnpj" ng-model="estabelecimentoData.cnpj" required ui-br-cnpj-mask>
                     <label for="cnpj">CNPJ</label>
                   </div>
                 </div>
