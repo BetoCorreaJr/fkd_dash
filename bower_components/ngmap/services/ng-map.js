@@ -7,7 +7,7 @@
 (function() {
   'use strict';
   var $window, $document, $q;
-  var NavigatorGeolocation, Attr2MapOptions, GeoCoder, camelCaseFilter;
+  var NavigatorGeolocation, Attr2MapOptions, GeoCoder, camelCaseFilter, NgMapPool;
 
   var mapControllers = {};
 
@@ -44,16 +44,20 @@
    * @param {String} optional, id e.g., 'foo'
    * @returns promise
    */
-  var getMap = function(id) {
+  var getMap = function(id, options) {
+    options = options || {};
     id = typeof id === 'object' ? id.id : id;
-    id = id || 0;
 
     var deferred = $q.defer();
-    var timeout = 2000;
+    var timeout = options.timeout || 10000;
 
     function waitForMap(timeElapsed){
-      if(mapControllers[id]){
+      var keys = Object.keys(mapControllers);
+      var theFirstController = mapControllers[keys[0]];
+      if(id && mapControllers[id]){
         deferred.resolve(mapControllers[id].map);
+      } else if (!id && theFirstController && theFirstController.map) {
+        deferred.resolve(theFirstController.map);
       } else if (timeElapsed > timeout) {
         deferred.reject('could not find map');
       } else {
@@ -108,6 +112,8 @@
       });
     }
 
+    NgMapPool.deleteMapInstance(mapId);
+
     delete mapControllers[mapId];
   };
 
@@ -141,6 +147,14 @@
           deferred.reject(error);
         }
       );
+      // var geocoder = new google.maps.Geocoder();
+      // geocoder.geocode(options, function (results, status) {
+      //   if (status == google.maps.GeocoderStatus.OK) {
+      //     deferred.resolve(results);
+      //   } else {
+      //     deferred.reject(status);
+      //   }
+      // });
     }
 
     return deferred.promise;
@@ -220,7 +234,7 @@
     var NgMap = function(
         _$window_, _$document_, _$q_,
         _NavigatorGeolocation_, _Attr2MapOptions_,
-        _GeoCoder_, _camelCaseFilter_
+        _GeoCoder_, _camelCaseFilter_, _NgMapPool_
       ) {
       $window = _$window_;
       $document = _$document_[0];
@@ -229,6 +243,7 @@
       Attr2MapOptions = _Attr2MapOptions_;
       GeoCoder = _GeoCoder_;
       camelCaseFilter = _camelCaseFilter_;
+      NgMapPool = _NgMapPool_;
 
       return {
         defaultOptions: defaultOptions,
@@ -244,7 +259,7 @@
     NgMap.$inject = [
       '$window', '$document', '$q',
       'NavigatorGeolocation', 'Attr2MapOptions',
-      'GeoCoder', 'camelCaseFilter'
+      'GeoCoder', 'camelCaseFilter', 'NgMapPool'
     ];
 
     this.$get = NgMap;

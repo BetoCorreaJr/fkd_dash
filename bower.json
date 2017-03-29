@@ -29,7 +29,7 @@
     "angular-filter": "^0.5.8",
     "angular-materialize": "^0.1.9",
     "angular-upload": "^1.0.12",
-    "materialize-clockpicker": "*",
+    "materialize-clockpicker": "^0.1.1",
     "ngmap": "^1.17.3",
     "angular-input-masks": "^2.5.0"
   }

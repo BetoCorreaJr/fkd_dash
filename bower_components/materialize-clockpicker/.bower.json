@@ -1,4 +1,5 @@
 {
+  "version": "0.1.1",
   "name": "materialize-clockpicker",
   "homepage": "https://github.com/chingyawhao/materialize-clockpicker",
   "authors": [
@@ -29,13 +30,14 @@
   "dependencies": {
     "Materialize": "materialize#~0.97.6"
   },
-  "_release": "41c1aab659",
+  "_release": "0.1.1",
   "_resolution": {
-    "type": "branch",
-    "branch": "master",
-    "commit": "41c1aab659d4e968219c3439faec34d1fee95415"
+    "type": "version",
+    "tag": "v0.1.1",
+    "commit": "aaf0246ba5180a4ace4c56a836867c5d46ffae02"
   },
   "_source": "https://github.com/chingyawhao/materialize-clockpicker.git",
-  "_target": "*",
-  "_originalSource": "materialize-clockpicker"
+  "_target": "^0.1.1",
+  "_originalSource": "materialize-clockpicker",
+  "_direct": true
 }

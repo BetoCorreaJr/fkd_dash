@@ -35,7 +35,7 @@
                     <label for="numero">Número</label>
                   </div>
                   <div class="input-field col s4">
-                    <input ng-class="{false:'validate', true:'invalid'}[form.complemento.$dirty && form.complemento.$invalid]" id="complemento" type="text" name="complemento" ng-model="estabelecimentoData.complemento" required>
+                    <input ng-class="{false:'validate', true:'invalid'}[form.complemento.$dirty && form.complemento.$invalid]" id="complemento" type="text" name="complemento" ng-model="estabelecimentoData.complemento">
                     <label for="complemento">Complemento (Opcional)</label>
                   </div>
                 </div>
@@ -107,6 +107,98 @@
                   <div class="input-field col s12">
                     <textarea id="descricao" name="descricao" ng-model="estabelecimentoData.descricao" class="materialize-textarea"></textarea>
                     <label for="descricao">Descrição (Opcional)</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12 m6">
+                    <h5>Dias e Horários do seu estabelecimento</h5>
+                    <p>
+                      <input type="checkbox" id="check-segunda" />
+                      <label for="check-segunda">Segunda</label>
+                    </p>
+                    <p>
+                      <input type="checkbox" id="check-terca" />
+                      <label for="check-terca">Terça</label>
+                    </p>
+                    <p>
+                      <input type="checkbox" id="check-quarta" />
+                      <label for="check-quarta">Quarta</label>
+                    </p>
+                    <p>
+                      <input type="checkbox" id="check-quinta" />
+                      <label for="check-quinta">Quinta</label>
+                    </p>
+                    <p>
+                      <input type="checkbox" id="check-sexta" />
+                      <label for="check-sexta">Sexta</label>
+                    </p>
+                    <p>
+                      <input type="checkbox" id="check-sabado" />
+                      <label for="check-sabado">Sábado</label>
+                    </p>
+                    <p>
+                      <input type="checkbox" id="check-domingo" />
+                      <label for="check-domingo">Domingo</label>
+                    </p>
+                  </div>
+                  <div class="col s12 m6" input-field>
+                    <div class="input-field col s6">  
+                      <label for="seg_starttime">Segunda início</label>
+                      <input id="seg_starttime" input-clock data-twelvehour="false" type="text">
+                    </div>
+                    <div class="input-field col s6">  
+                      <label for="seg_endtime">Segunda fim</label>
+                      <input id="seg_endtime" input-clock data-twelvehour="false" type="text">
+                    </div>
+                    <div class="input-field col s6">  
+                      <label for="ter_starttime">Terça início</label>
+                      <input id="ter_starttime" input-clock data-twelvehour="false" type="text">
+                    </div>
+                    <div class="input-field col s6">  
+                      <label for="ter_endtime">Terça fim</label>
+                      <input id="ter_endtime" input-clock data-twelvehour="false" type="text">
+                    </div>
+                    <div class="input-field col s6">  
+                      <label for="qua_starttime">Quarta início</label>
+                      <input id="qua_starttime" input-clock data-twelvehour="false" type="text">
+                    </div>
+                    <div class="input-field col s6">  
+                      <label for="qua_endtime">Quarta fim</label>
+                      <input id="qua_endtime" input-clock data-twelvehour="false" type="text">
+                    </div>
+                    <div class="input-field col s6">  
+                      <label for="qui_starttime">Quinta início</label>
+                      <input id="qui_starttime" input-clock data-twelvehour="false" type="text">
+                    </div>
+                    <div class="input-field col s6">  
+                      <label for="qui_endtime">Quinta fim</label>
+                      <input id="qui_endtime" input-clock data-twelvehour="false" type="text">
+                    </div>
+                    <div class="input-field col s6">  
+                      <label for="sex_starttime">Sexta início</label>
+                      <input id="sex_starttime" input-clock data-twelvehour="false" type="text">
+                    </div>
+                    <div class="input-field col s6">  
+                      <label for="sex_endtime">Sexta fim</label>
+                      <input id="sex_endtime" input-clock data-twelvehour="false" type="text">
+                    </div>
+                    <div class="input-field col s6">  
+                      <label for="sab_starttime">Sábado início</label>
+                      <input id="sab_starttime" input-clock data-twelvehour="false" type="text">
+                    </div>
+                    <div class="input-field col s6">  
+                      <label for="sab_endtime">Sábado fim</label>
+                      <input id="sab_endtime" input-clock data-twelvehour="false" type="text">
+                    </div>
+                    <div class="input-field col s6">  
+                      <label for="dom_starttime">Domingo início</label>
+                      <input id="dom_starttime" input-clock data-twelvehour="false" type="text">
+                    </div>
+                    <div class="input-field col s6">  
+                      <label for="dom_endtime">Domingo fim</label>
+                      <input id="dom_endtime" input-clock data-twelvehour="false" type="text">
+                    </div>
+                    
                   </div>
                 </div>
                 <div class="row">
